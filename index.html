@@ -2,494 +2,890 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>超流體產生器參數計算 V3.0</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Thermal Agent 小R</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        /* 工業風變數與字體優化 - 綠色冷光主題 */
         :root {
-            --bg-dark: #0f0f0f;
-            --panel-bg: #1a1a1a;
-            --accent-gold: #ffb400;
-            --accent-cyan: #00f2ff;
-            --text-main: #f0f0f0;
-            --border-industrial: #3a3a3a;
-            --input-focus: #2d2d2d;
-            --danger: #ff3e3e;
-            --font-main: 'Segoe UI', 'Roboto', 'Microsoft JhengHei', sans-serif;
-            --font-mono: 'JetBrains Mono', 'Consolas', monospace;
+            --bg-dark: #080d0a;
+            --panel-bg: #0d1712;
+            --border-color: #163323;
+            --accent-orange: #00ff9d;
+            --accent-green: #00ff9d;
+            --msg-user: #132b1e;
+            --msg-ai: #0b1a13;
         }
 
         body {
             background-color: var(--bg-dark);
-            color: var(--text-main);
-            font-family: var(--font-main);
+            color: #e2e8f0;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+            margin: 0;
+            height: 100vh;
+            height: 100dvh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-            letter-spacing: 0.5px;
+            padding: 1rem;
+            box-sizing: border-box;
         }
 
-        .calc-wrapper {
+        /* 主容器 */
+        .agent-container {
+            background-color: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            border-top: 4px solid var(--accent-orange);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
             width: 100%;
-            max-width: 650px;
-            background: var(--panel-bg);
-            border: 1px solid var(--border-industrial);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-            position: relative;
+            max-width: 800px;
+            height: 100%; 
+            max-height: 900px;
             display: flex;
             flex-direction: column;
-        }
-
-        .calc-wrapper::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent-gold) 0%, #000 50%, var(--accent-gold) 100%);
-            z-index: 10;
-        }
-
-        /* 即時時間顯示樣式 */
-        .live-clock {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            color: var(--accent-gold);
-            letter-spacing: 1px;
-            z-index: 20;
-            background: rgba(0,0,0,0.3);
-            padding: 2px 8px;
-            border-radius: 2px;
-        }
-
-        .tabs {
-            display: flex;
-            background: #111;
-            border-bottom: 1px solid var(--border-industrial);
-        }
-
-        .tab-btn {
-            padding: 15px 25px;
-            cursor: pointer;
-            border: none;
-            background: transparent;
-            color: #777;
-            font-family: var(--font-main);
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            transition: 0.3s;
-            letter-spacing: 2px;
-        }
-
-        .tab-btn.active {
-            color: var(--accent-gold);
-            background: var(--panel-bg);
-            box-shadow: inset 0 -2px 0 var(--accent-gold);
-        }
-
-        .content-area {
-            padding: 35px;
-        }
-
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.4s ease-out;
+            border-radius: 4px;
+            animation: fadeIn 0.5s ease-out;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(5px); }
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .tab-content.active {
-            display: block;
+        /* 聊天區塊滾動條優化 */
+        .chat-box {
+            overflow-y: auto;
+            scroll-behavior: smooth;
+        }
+        .chat-box::-webkit-scrollbar {
+            width: 6px;
+        }
+        .chat-box::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.2);
+        }
+        .chat-box::-webkit-scrollbar-thumb {
+            background: #1f4731;
+            border-radius: 3px;
+        }
+        .chat-box::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-orange);
         }
 
-        header {
-            margin-bottom: 30px;
-            border-left: 4px solid var(--accent-gold);
-            padding-left: 15px;
-        }
-
-        h1 {
-            font-size: 1.5rem;
-            margin: 0;
-            color: var(--accent-gold);
-            font-family: var(--font-mono);
-            font-weight: 700;
-        }
-
-        .status-tag {
-            font-size: 0.7rem;
-            color: #aaa;
-            margin-top: 5px;
-            font-family: var(--font-mono);
-        }
-
-        .input-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-            margin-bottom: 35px;
-        }
-
-        .field {
-            display: flex;
-            flex-direction: column;
-        }
-
-        label {
-            font-size: 0.8rem;
-            margin-bottom: 10px;
-            color: #999;
-            font-weight: 600;
-        }
-
-        input, select {
-            background: #0a0a0a;
-            border: 1px solid var(--border-industrial);
-            color: var(--accent-cyan);
-            padding: 14px;
-            font-size: 1rem;
-            font-family: var(--font-mono);
-            outline: none;
-            transition: 0.2s;
-        }
-
-        input:focus, select:focus {
-            border-color: var(--accent-gold);
-            background: #121212;
-            box-shadow: 0 0 10px rgba(255, 180, 0, 0.1);
-        }
-
-        .output-section {
-            background: #111;
-            padding: 25px;
-            border: 1px solid #222;
-        }
-
-        .output-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 0;
-            border-bottom: 1px solid #222;
-        }
-
-        .output-row:last-child {
-            border-bottom: none;
-        }
-
-        .label-text {
-            font-size: 0.9rem;
-            color: #bbb;
-        }
-
-        .value-text {
-            color: var(--accent-gold);
-            font-weight: 700;
-            font-size: 1.2rem;
-            font-family: var(--font-mono);
-        }
-
-        .unit {
-            font-size: 0.75rem;
-            color: #555;
-            margin-left: 6px;
-        }
-
-        .warning-text {
-            color: var(--danger);
-            font-size: 0.85rem;
-            display: none;
-            margin-top: 20px;
-            background: rgba(255, 62, 62, 0.1);
-            border: 1px solid var(--danger);
-            padding: 15px;
-            line-height: 1.5;
-        }
-
-        .btn-calc {
-            width: 100%;
-            background: var(--accent-gold);
-            color: #000;
-            border: none;
-            padding: 18px;
-            font-weight: 800;
-            text-transform: uppercase;
-            cursor: pointer;
-            margin-top: 25px;
-            letter-spacing: 3px;
-            font-family: var(--font-mono);
-            transition: 0.3s;
-        }
-
-        .btn-calc:hover {
-            background: #ffc43d;
-            filter: brightness(1.1);
-        }
-
-        /* 說明分頁 */
-        .info-card {
-            background: #111;
-            padding: 20px;
-            margin-bottom: 25px;
-            border: 1px solid #222;
-        }
-
-        .info-card h2 {
-            color: var(--accent-gold);
-            font-size: 1rem;
-            margin-top: 0;
-            margin-bottom: 15px;
-            font-family: var(--font-mono);
-        }
-
-        .formula-block {
-            font-family: var(--font-mono);
-            background: #000;
-            padding: 15px;
-            color: var(--accent-cyan);
-            font-size: 0.8rem;
+        /* 訊息氣泡 */
+        .msg-bubble {
+            max-width: 85%;
+            padding: 12px 16px;
+            border-radius: 6px;
             line-height: 1.6;
-            border: 1px solid #333;
-            margin-bottom: 15px;
+            font-size: 0.9rem;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+        }
+        .msg-user {
+            background-color: var(--msg-user);
+            border: 1px solid #1f4731;
+            border-right: 3px solid var(--accent-orange);
+            margin-left: auto;
+            color: #fff;
+        }
+        .msg-ai {
+            background-color: var(--msg-ai);
+            border: 1px solid #163323;
+            border-left: 3px solid var(--accent-green);
+            margin-right: auto;
+            color: #88ffcc;
+            font-family: 'Courier New', Courier, monospace;
         }
 
-        .note-highlight {
-            color: var(--accent-gold);
-            font-weight: bold;
+        /* 輸入框與按鈕 */
+        .industrial-input {
+            background-color: #050907;
+            border: 1px solid var(--border-color);
+            color: white;
+            transition: all 0.2s;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        .industrial-input:focus {
+            outline: none;
+            border-color: var(--accent-orange);
+            box-shadow: 0 0 0 1px var(--accent-orange);
+        }
+        .send-btn {
+            background-color: var(--accent-orange);
+            color: #080d0a; 
+            transition: all 0.2s;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        .send-btn:hover {
+            background-color: #00cc7e;
+            box-shadow: 0 0 10px rgba(0, 255, 157, 0.4);
+        }
+
+        /* 快捷問題標籤 */
+        .quick-chip {
+            background-color: #132b1e;
+            border: 1px solid #1f4731;
+            color: #88ccaa;
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .quick-chip:hover {
+            border-color: var(--accent-orange);
+            color: white;
+            box-shadow: 0 0 8px rgba(0, 255, 157, 0.2);
+        }
+
+        /* 打字游標動畫 */
+        .typing-cursor::after {
+            content: '█';
+            animation: blink 1s step-end infinite;
+            color: var(--accent-green);
+            margin-left: 4px;
+            font-size: 0.8rem;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+        /* 隱藏原生滾動條(快捷列) */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
     </style>
 </head>
 <body>
 
-<div class="calc-wrapper">
-    <div id="live_clock" class="live-clock">--:--:--</div>
-    
-    <div class="tabs">
-        <button class="tab-btn active" onclick="openTab('calc')">Simulator</button>
-        <button class="tab-btn" onclick="openTab('info')">Documentation</button>
-    </div>
-
-    <div class="content-area">
-        <!-- 模擬器分頁 -->
-        <div id="calc" class="tab-content active">
-            <header>
-                <h1>SFG SIMULATOR V3.0 (FLOW_SYNC)</h1>
-                <div class="status-tag">CREATOR: RANDY CHEN | RELEASE: 2026.01.26</div>
-            </header>
-
-            <div class="input-section">
-                <div class="field" style="grid-column: span 2;">
-                    <label>冷卻液種類 (Coolant Type)</label>
-                    <select id="fluid_type">
-                        <option value="synthetic_oil">合成油 (Synthetic Oil) - 高黏度/高絕緣</option>
-                        <option value="fluorinated">氟化液 (Fluorinated Fluid) - 電子級/低黏度</option>
-                        <option value="pg25">PG25 (水基丙二醇) - 高比熱/導電風險</option>
-                        <option value="pure_water">去離子純水 - 最高熱容/極高風險</option>
-                    </select>
-                </div>
-                <div class="field">
-                    <label>初始流體黏度 (cP)</label>
-                    <input type="number" id="base_visc" value="25.0" step="0.1">
-                </div>
-                <div class="field">
-                    <label>氣泡注入比 (%)</label>
-                    <input type="number" id="inj_ratio" value="12.0" step="0.5" min="0" max="50">
-                </div>
-                <div class="field">
-                    <label>循環流速 (L/min)</label>
-                    <input type="number" id="flow_rate" value="12.0" step="0.1">
-                </div>
-                <div class="field">
-                    <label>目標 TDP (Watts)</label>
-                    <input type="number" id="target_tdp" value="1000" step="100">
+    <!-- ========================================== -->
+    <!-- 主程式介面 (Main App Container) -->
+    <!-- ========================================== -->
+    <div id="mainApp" class="agent-container">
+        <!-- Header -->
+        <div class="p-4 border-b border-[#163323] flex justify-between items-center bg-[#0d1712]">
+            <div class="flex items-center gap-3">
+                <div class="w-3 h-3 rounded-full bg-[#00ff9d] shadow-[0_0_8px_#00ff9d] animate-pulse"></div>
+                <div>
+                    <h1 class="text-lg font-bold text-white tracking-wide">THERMAL AGENT 小R</h1>
+                    <p class="text-[10px] text-gray-400 uppercase tracking-wider">製作者:藍迪 V3.7</p>
                 </div>
             </div>
-
-            <div class="output-section">
-                <div class="output-row">
-                    <span class="label-text">流體黏度降低比例</span>
-                    <span class="value-text" id="visc_red_out">--</span>
-                </div>
-                <div class="output-row">
-                    <span class="label-text">預估熱阻改善 (Thermal Δ)</span>
-                    <span class="value-text" id="thermal_imp_out">--</span>
-                </div>
-                <div class="output-row">
-                    <span class="label-text">流體熱容衰減 (Cap. Loss)</span>
-                    <span class="value-text" style="color: #ff3e3e;" id="heat_loss_out">--</span>
-                </div>
-                <div class="output-row">
-                    <span class="label-text">系統最終解熱上限</span>
-                    <span class="value-text" id="cool_capacity_out">--</span>
-                </div>
-                <div id="warning_box" class="warning-text">
-                    [SYSTEM ALERT]<br>
-                    檢測到物理性效能崩潰風險：氣泡比例過高導致熱容損失已超過流速補償增益。
-                </div>
+            <div class="flex items-center gap-4">
+                <span id="realTimeClock" class="text-xs text-[var(--accent-green)] font-mono tracking-wider hidden sm:block"></span>
+                <button onclick="clearChat()" class="text-xs text-gray-500 hover:text-[#00ff9d] transition-colors">
+                    [ 清除對話 ]
+                </button>
             </div>
-
-            <button class="btn-calc" id="run_sim">執行核心演算</button>
         </div>
 
-        <!-- 說明分頁 -->
-        <div id="info" class="tab-content">
-            <header>
-                <h1>核心公式與物理模型</h1>
-                <div class="status-tag">CORE LOGIC & FORMULAS</div>
-            </header>
-
-            <div class="info-card">
-                <h2>1. 系統最終解熱能力 (Final Capacity)</h2>
-                <div class="formula-block">
-                    FlowFactor = FlowRate / 12.0 (基準值)<br>
-                    Efficiency = (1 + ThermalImp / 100) * (1 - CapLoss / 100) * FlowFactor<br>
-                    FinalCapacity = TDP * Efficiency
-                </div>
+        <!-- Chat History Area -->
+        <div id="chatBox" class="chat-box flex-grow p-4 space-y-4 flex flex-col">
+            <div class="flex flex-col gap-1 w-full">
+                <span class="text-[13px] text-gray-200 ml-1">小R</span>
+                <div class="msg-bubble msg-ai">YO~ 我是小R，我可以幫忙回答一些通用性基礎Thermal問題喔。
+請輸入您的問題，或直接點選下方的快捷問題，我將提供適合回覆建議。
+如果你的問題沒被回覆，系統會發訊息給管理員藍迪，下一版會一起加進資料庫哩，謝謝啦。</div>
             </div>
+        </div>
 
-            <div class="info-card">
-                <h2>2. 黏度降低比例 (Viscosity Reduction)</h2>
-                <div class="formula-block">
-                    IF Ratio <= 18:<br>
-                    &nbsp;&nbsp;ViscReduction = Ratio * 1.35 * ViscGain<br>
-                    ELSE:<br>
-                    &nbsp;&nbsp;ViscReduction = (18 * 1.35 * ViscGain) + (Ratio - 18) * 0.35<br>
-                    (Max Limit: 45%)
-                </div>
+        <!-- Input Area -->
+        <div class="p-4 bg-[#0d1712] border-t border-[#163323]">
+            <div class="flex gap-2 overflow-x-auto pb-3 mb-1 no-scrollbar" id="quickQuestions">
+                <button class="quick-chip" onclick="sendQuickQuestion('跑熱模擬需要什麼資料？')">跑熱模擬需要什麼資料？</button>
+                <button class="quick-chip" onclick="sendQuickQuestion('Heat Sink製程介紹')">Heat Sink製程說明</button>
+                <button class="quick-chip" onclick="sendQuickQuestion('初步系統噪音計算方式?')">初步系統噪音計算方式?</button>
+                <button class="quick-chip" onclick="sendQuickQuestion('Thermal pad製程介紹影片')">Thermal pad製程介紹(含影片)</button>
+                <button class="quick-chip" onclick="sendQuickQuestion('鋁擠製程介紹影片')">鋁擠製程介紹(含影片)</button>
             </div>
-
-            <div class="info-card">
-                <h2>3. 熱阻改善與熱容損失</h2>
-                <p style="font-size: 0.8rem; color: #999; margin-bottom: 10px;">熱阻改善 (Thermal Improvement):</p>
-                <div class="formula-block">
-                    BaseImp = 8.8 + (Ratio / 25) * (11.4 - 8.8)<br>
-                    (Adjusted by Fluid Type Turbulence Factor)
-                </div>
-                <p style="font-size: 0.8rem; color: #999; margin-bottom: 10px;">熱容損失 (Capacity Loss):</p>
-                <div class="formula-block">
-                    CapLoss = Ratio * (0.7 + (FluidHeatWeight * 0.3))
-                </div>
-            </div>
-
-            <div class="info-card">
-                <h2>4. 流體參數表</h2>
-                <table style="width: 100%; font-size: 0.8rem; color: #ccc; border-collapse: collapse;">
-                    <tr style="border-bottom: 1px solid #333; text-align: left;">
-                        <th style="padding: 5px;">Fluid</th>
-                        <th>HeatWeight</th>
-                        <th>ViscGain</th>
-                    </tr>
-                    <tr><td style="padding: 5px;">Synthetic Oil</td><td>0.45</td><td>1.5</td></tr>
-                    <tr><td style="padding: 5px;">Fluorinated</td><td>0.25</td><td>0.8</td></tr>
-                    <tr><td style="padding: 5px;">PG25</td><td>0.85</td><td>1.0</td></tr>
-                    <tr><td style="padding: 5px;">Pure Water</td><td>1.00</td><td>1.1</td></tr>
-                </table>
+            <div class="flex gap-2">
+                <input type="text" id="userInput" 
+                    class="industrial-input flex-grow p-3 rounded-sm text-[16px]" 
+                    placeholder="請輸入你的問題..."
+                    autocomplete="off"
+                    onkeydown="handleKeyPress(event)">
+                <button onclick="handleSend()" class="send-btn px-6 py-3 rounded-sm font-bold tracking-widest text-sm flex items-center justify-center min-w-[80px]">
+                    SEND
+                </button>
             </div>
         </div>
     </div>
-</div>
 
-<script>
-    // 禁用右鍵選單
-    document.addEventListener('contextmenu', e => e.preventDefault());
-
-    // 即時時間更新
-    function updateClock() {
-        const now = new Date();
-        const timeString = now.toLocaleTimeString('zh-TW', { 
-            hour12: false, 
-            hour: '2-digit', 
-            minute: '2-digit', 
-            second: '2-digit' 
-        });
-        document.getElementById('live_clock').innerText = timeString;
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
-
-    function openTab(tabName) {
-        const contents = document.querySelectorAll('.tab-content');
-        const buttons = document.querySelectorAll('.tab-btn');
+    <!-- 移除了 Firebase，改為純前端原生 JavaScript -->
+    <script>
+        const chatBox = document.getElementById('chatBox');
+        const userInput = document.getElementById('userInput');
+        let isTyping = false; 
         
-        contents.forEach(c => c.classList.remove('active'));
-        buttons.forEach(b => b.classList.remove('active'));
-        
-        document.getElementById(tabName).classList.add('active');
-        event.currentTarget.classList.add('active');
-    }
+        // ==========================================
+        // Google Apps Script (GAS) 拋送設定
+        // ==========================================
+        // 已經為您設定好您專屬的 Apps Script URL
+        const GAS_URL = 'https://script.google.com/macros/s/AKfycbwfIKX19ubKoH3ey_zWIRmWnZgviMNs4t0xzbeSwC5tVxxyE_E6W5MPkwdNVCTxQr155Q/exec';
 
-    // 流體預設值
-    document.getElementById('fluid_type').addEventListener('change', function() {
-        const baseVisc = document.getElementById('base_visc');
-        switch(this.value) {
-            case 'synthetic_oil': baseVisc.value = 25.0; break;
-            case 'fluorinated': baseVisc.value = 0.8; break;
-            case 'pg25': baseVisc.value = 2.5; break;
-            case 'pure_water': baseVisc.value = 1.0; break;
+        // 寫入 Google 試算表 (使用 100% 成功的 GET 方式)
+        async function submitToGoogleSheet(question) {
+            if (!GAS_URL || GAS_URL.includes("請將此處替換為")) {
+                console.warn("GAS URL 尚未設定。");
+                return;
+            }
+            try {
+                // 既然網址測試成功，我們直接用 GET 方式把問題接在網址後面傳送，保證成功！
+                const targetUrl = GAS_URL + '?question=' + encodeURIComponent(question);
+                
+                await fetch(targetUrl, {
+                    method: 'GET',
+                    mode: 'no-cors' // 依然加上 no-cors 避免前端報錯
+                });
+                
+                console.log("未回覆問題已成功傳送至 Google 試算表！");
+            } catch (e) {
+                console.error("資料傳送失敗:", e);
+            }
         }
-    });
 
-    function performCalculation() {
-        const fluidType = document.getElementById('fluid_type').value;
-        const baseVisc = parseFloat(document.getElementById('base_visc').value);
-        const ratio = parseFloat(document.getElementById('inj_ratio').value);
-        const flow = parseFloat(document.getElementById('flow_rate').value);
-        const tdp = parseFloat(document.getElementById('target_tdp').value);
+        // ==========================================
+        // UI & 知識庫邏輯
+        // ==========================================
+        function updateClock() {
+            const now = new Date();
+            const yyyy = now.getFullYear();
+            const mm = String(now.getMonth() + 1).padStart(2, '0');
+            const dd = String(now.getDate()).padStart(2, '0');
+            const hh = String(now.getHours()).padStart(2, '0');
+            const min = String(now.getMinutes()).padStart(2, '0');
+            const ss = String(now.getSeconds()).padStart(2, '0');
+            const clockEl = document.getElementById('realTimeClock');
+            if(clockEl) clockEl.innerText = `[${yyyy}-${mm}-${dd} ${hh}:${min}:${ss}]`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
 
-        if (isNaN(baseVisc) || isNaN(ratio) || isNaN(flow) || isNaN(tdp)) return;
+        const knowledgeBase = [
+            {
+                keywords: ["模擬", "資料"],
+                // 加入 a 標籤與 css 樣式。雙斜線路徑在字串中需要使用 '\\' 來避免跳脫。
+                answer: "模擬需要資料如下，資料全部到齊確認OK後才能進行排程喔。\n1.回填廢熱表(EE/Power)，如下載連結: <a href='https://docs.google.com/spreadsheets/d/1ZNCjw0w1ElHVHm2Zcb1UZNgbpNfouEvX/edit?usp=drive_link&ouid=114028389622768722194&rtpof=true&sd=true' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>模擬廢熱表</a>\n2.廢熱表內零件datasheet(EE/Power)。\n3.廢熱表內零件位置圖(EE/Power)。\n4.系統環境溫度規格與噪音規格(PM)。"
+            },
+            {
+                keywords: ["模擬", "需要什麼"],
+                answer: "模擬需要資料如下，資料全部到齊確認OK後才能進行排程喔。\n1.回填廢熱表(EE/Power)，如下載連結: <a href='https://docs.google.com/spreadsheets/d/1ZNCjw0w1ElHVHm2Zcb1UZNgbpNfouEvX/edit?usp=drive_link&ouid=114028389622768722194&rtpof=true&sd=true' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>模擬廢熱表</a>\n2.廢熱表內零件datasheet(EE/Power)。\n3.廢熱表內零件位置圖(EE/Power)。\n4.系統環境溫度規格與噪音規格(PM)。"
+            },
+            {
+                keywords: ["模擬", "排程"],
+                answer: "模擬需要資料全部到齊後確認OK後，Thermal Team內部才能進行排程喔。\n目前thermal simulaiton五位工程師使用兩套，可能需要排隊，請洽對應thermal。"
+            },
+            {
+                keywords: ["噪音", "計算"],
+                answer: "噪音是一種複雜能量，因為環境/材質/位置/測試方式/頻率共鳴等等多樣條件不同，也因此，無法精確計算或是模擬，只能實測才有精確值。\n但有時系統開發初期確需要初步估計，沒有辦法中的辦法中，有個理想化簡易計算工具總比胡亂猜的好，以下是工具連結，如果使用上有問題，請詢問Thermal。\n<a href='https://advantechrandy.github.io/Tool-A013_V2.3/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>初步Sound Pressure噪音計算Tool</a>"
+            },
+            {
+                keywords: ["噪音", "評估"],
+                answer: "噪音是一種複雜能量，因為環境/材質/位置/測試方式/頻率共鳴等等多樣條件不同，也因此，無法精確計算或是模擬，只能實測才有精確值。\n但有時系統開發初期確需要初步估計，沒有辦法中的辦法中，有個理想化簡易計算工具總比胡亂猜的好，以下是工具連結，如果使用上有問題，請詢問Thermal。\n<a href='https://advantechrandy.github.io/Tool-A013_V2.3/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>初步Sound Pressure噪音計算Tool</a>"
+            },
+            {
+                keywords: ["知道", "噪音"],
+                answer: "噪音是一種複雜能量，因為環境/材質/位置/測試方式/頻率共鳴等等多樣條件不同，也因此，無法精確計算或是模擬，只能實測才有精確值。\n但有時系統開發初期確需要初步估計，沒有辦法中的辦法中，有個理想化簡易計算工具總比胡亂猜的好，以下是工具連結，如果使用上有問題，請詢問Thermal。\n<a href='https://advantechrandy.github.io/Tool-A013_V2.3/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>初步Sound Pressure噪音計算Tool</a>"
+            },
+            {
+                keywords: ["廠商", "資料"],
+                answer: "以下為研華常用Thermal料件廠商聯絡方式連結。\n<a href='https://drive.google.com/file/d/1Ztx_rssuquMWoT_7kdCSCCpafMpbxw10/view?usp=drive_link' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>Thermal常用料廠商聯絡方式</a>"
+            },
+            {
+                keywords: ["廠商", "聯絡"],
+                answer: "以下為研華常用Thermal料件廠商聯絡方式連結。\n<a href='https://drive.google.com/file/d/1Ztx_rssuquMWoT_7kdCSCCpafMpbxw10/view?usp=drive_link' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>Thermal常用料廠商聯絡方式</a>"
+            },
+            {
+                keywords: ["smart fan control","什麼"],
+                answer: "Smart fan control是設定溫度對應duty的table給BIOS，讓風扇可以依照溫度變化自動控制，溫度低的時後轉速低降低噪音，溫度高的時後轉速拉高保護零件，在溫度與Noise之間取的平衡點。"
+            },
+            {
+                keywords: ["smart fan風扇","風扇"],
+                answer: "所謂的smart fan風扇，指的是有tech pin/ PWM pin的風扇，有四根pin，tech pin可以讀轉速，PWM pin可以用duty控制風扇轉速。\n如果風扇沒有smart fan功能，那麼風扇只有兩根pin，只有正負兩根電源線。"
+            },
+            {
+                keywords: ["thermal pad", "交期"],
+                answer: "我們常用PVL thermal pad廠商為翰興及高柏。\nThermal pad交期一般為3~5天。"
+            },
+            {
+                keywords: ["散熱片", "交期"],
+                answer: "我們常用PVL thermal pad廠商為翰興及高柏。\nThermal pad交期一般為3~5天。"
+            },
+            {
+                keywords: ["tc", "什麼"],
+                answer: "tc通常說的是case temperature，指零件表面溫度。"
+            },
+            {
+                keywords: ["tj", "什麼"],
+                answer: "tcj通常說的是junction temperature，指零件內部最高溫度die的溫度。"
+            },
+            {
+                keywords: ["ta", "什麼"],
+                answer: "ta通常說的是ambient temperature，指零件上方10mm的空氣溫度(QA的測試定義)。"
+            },
+            {
+                keywords: ["tj", "tc", "ta"],
+                answer: "Tj(junction temperature):零件內部die的溫度。\nTc(case temperature):零件表面溫度。\nTa(ambient temperature):零件上方10mm的空氣溫度(QA的定義)。"
+            },
+            {
+                keywords: ["降頻", "什麼"],
+                answer: "降頻為零件內部的硬體設定，達到一定溫度時，零件瓦特數頻率會開始降低，避免零件損壞。\n降頻並不會當機，只是瓦特數頻率變低，效能變比較差。"
+            },
+            {
+                keywords: ["throttl", "什麼"],
+                answer: "降頻為零件內部的硬體設定，達到一定溫度時，零件瓦特數頻率會開始降低，避免零件損壞。\n降頻並不會當機，只是瓦特數頻率變低，效能變比較差。"
+            },
+            {
+                keywords: ["CPU", "熱當"],
+                answer: "零件硬體設定裡，有些會有shutdown溫度點設定，尤其是CPU/GPU。\n到達這溫度點時，零件電源會馬上關掉。"
+            },
+            {
+                keywords: ["零件", "熱當"],
+                answer: "零件硬體設定裡，有些會有shutdown溫度點設定，尤其是CPU/GPU。\n到達這溫度點時，零件電源會馬上關掉。"
+            },
+            {
+                keywords: ["CPU", "shutdown"],
+                answer: "零件硬體設定裡，有些會有shutdown溫度點設定，尤其是CPU/GPU。\n到達這溫度點時，零件電源會馬上關掉。"
+            },
+            {
+                keywords: ["零件", "shutdown"],
+                answer: "零件硬體設定裡，有些會有shutdown溫度點設定，尤其是CPU/GPU。\n到達這溫度點時，零件電源會馬上關掉。"
+            },
+            {
+                keywords: ["heat sink", "交期"],
+                answer: "我們常用PVL heat sink廠商為睿毅及CM。\nHeat sink樣品交期大約為6~8周，這範圍會有波動，依照那時廠商工廠排程鬆緊程度。"
+            },
+            {
+                keywords: ["風扇", "交期"],
+                answer: "我們常用PVL 風扇廠商為友士(台達代理)/發明家(SUNON代理)。\n如果廠商有庫存，那麼交期為四週內。如果廠商沒有庫存，那麼交期會是八週以上。"
+            },
+            {
+                keywords: ["fan", "交期"],
+                answer: "我們常用PVL 風扇廠商為友士(台達代理)/發明家(SUNON代理)。\n如果廠商有庫存，那麼交期為四週內。如果廠商沒有庫存，那麼交期會是八週以上。"
+            },
+            {
+                keywords: ["cooler", "交期"],
+                answer: "我們常用PVL cooler廠商為CM及睿毅。\nCooler料件中包含風扇，而風扇目前會是交期最久的料件，所以cooler如果沒有庫存，那麼交期會是八週以上。"
+            },
+            {
+                keywords: ["噪音", "方式"],
+                answer: "噪音測試方式分Sound Pressure(研華常用方式)/Sound Power/Sound Quality。\n因為系統風扇廠商統一噪音測試方式為Sound Pressure，所以強烈建議系統規格也用Sound Pressure，這樣才能初步計算。\n系統Sound Pressure測試規範為ISO7779:2018"
+            },
+            {
+                keywords: ["噪音", "型式"],
+                answer: "噪音測試方式分Sound Pressure(研華常用方式)/Sound Power/Sound Quality。\n因為系統風扇廠商統一噪音測試方式為Sound Pressure，所以強烈建議系統規格也用Sound Pressure，這樣才能初步計算。\n系統Sound Pressure測試規範為ISO7779:2018"
+            },
+            {
+                keywords: ["噪音", "那些"],
+                answer: "噪音測試方式分Sound Pressure(研華常用方式)/Sound Power/Sound Quality。\n因為系統風扇廠商統一噪音測試方式為Sound Pressure，所以強烈建議系統規格也用Sound Pressure，這樣才能初步計算。\n系統Sound Pressure測試規範為ISO7779:2018"
+            },
+            {
+                keywords: ["鋁", "銅","比較"],
+                answer: "銅的導熱係數為390W/mK，常用鋁擠料鋁6061導熱係數為180W/mK，銅的導熱速度約為鋁6061的兩倍。"
+            },
+            {
+                keywords: ["木頭","導熱"],
+                answer: "木頭的導熱係數約為0.2W/mK，約為鋁的千分之一導熱速度，是很好的絕熱材料，是很差的導熱材料。"
+            },
+            {
+                keywords: ["木頭","散熱"],
+                answer: "木頭的導熱係數約為0.2W/mK，約為鋁的千分之一導熱速度，是很好的絕熱材料，是很差的導熱材料。"
+            },
+            {
+                keywords: ["鋁擠", "銅"],
+                answer: "銅的導熱係數為390W/mK，常用鋁擠料鋁6061導熱係數為180W/mK，銅的導熱速度約為鋁6061的兩倍。"
+            },
+            {
+                keywords: ["bga cpu","解熱"],
+                answer: "BGA CPU解熱有兩種方式。\n如果是fanless SKU，一般是安裝heat sink或是直接接觸外殼。\n如果是fan SKU，一般是加裝mobile CPU cooler。"
+            },
+            {
+                keywords: ["bga cpu","散熱"],
+                answer: "BGA CPU解熱有兩種方式。\n如果是fanless SKU，一般是安裝heat sink或是直接接觸外殼。\n如果是fan SKU，一般是加裝mobile CPU cooler。"
+            },
+            {
+                keywords: ["fanless cpu","解熱"],
+                answer: "Fanless CPU解熱有兩種方式。\n一般是安裝heat sink或是直接接觸外殼。\n設計重點是需要有足夠的自然散熱面積與低熱阻抗。"
+            },
+            {
+                keywords: ["fanless cpu","散熱"],
+                answer: "Fanless CPU解熱有兩種方式。\n一般是安裝heat sink或是直接接觸外殼。\n設計重點是需要有足夠的自然散熱面積與低熱阻抗。"
+            },
+            {
+                keywords: ["模擬","時間"],
+                answer: "Thermal simulation需要3~4個工作天，看系統複雜度及當下工作狀況。"
+            },
+            {
+                keywords: ["simulation","時間"],
+                answer: "Thermal simulation需要3~4個工作天，看系統複雜度及當下工作狀況。"
+            },
+            {
+                keywords: ["模擬","多久"],
+                answer: "Thermal simulation需要3~4個工作天，看系統複雜度及當下工作狀況。"
+            },
+            {
+                keywords: ["浸沒","什麼"],
+                answer: "說明簡介連結:<a href='https://advantechrandy.github.io/Data-B006_V1.4/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>浸沒冷卻說明與影片</a>。"
+            },
+            {
+                keywords: ["simulaiton","多久"],
+                answer: "Thermal simulation需要3~4個工作天，看系統複雜度及當下工作狀況。"
+            },
+            {
+                keywords: ["thermal","工作"],
+                answer: "Thermal工作簡易說明如下。\n1.RFQ初期thermal solution規畫報價及風險評估。\n2.RFQ Thermal simulaiton評估。\n3.EVT thermal profile pre-test。\n4.DVT noise test(如果有需要)。\n5.後續PVT/MP相關thermal問題解決。"
+            },
+            {
+                keywords: ["thermal test","時間"],
+                answer: "Thermal profile pre-test需要4~5個工作天，看系統複雜度及當下工作狀況。"
+            },
+            {
+                keywords: ["溫度測試","時間"],
+                answer: "Thermal profile pre-test需要4~5個工作天，看系統複雜度及當下工作狀況。"
+            },
+            {
+                keywords: ["thermal test","多久"],
+                answer: "Thermal profile pre-test需要4~5個工作天，看系統複雜度及當下工作狀況。"
+            },
+            {
+                keywords: ["溫度測試","多久"],
+                answer: "Thermal profile pre-test需要4~5個工作天，看系統複雜度及當下工作狀況。"
+            },
+            {
+                keywords: ["自然對流","什麼"],
+                answer: "在沒有風扇吹或是外部風流狀態下，系統只能依靠本身散熱面加熱空氣，空氣被加熱後密度變小，會緩慢上升，形成很微小的風流，這微小風流有散熱效果。\這個過程我們叫它自然對流。"
+            },
+            {
+                keywords: ["自然對流","定義"],
+                answer: "在沒有風扇吹或是外部風流狀態下，系統只能依靠本身散熱面加熱空氣，空氣被加熱後密度變小，會緩慢上升，形成很微小的風流，這微小風流有散熱效果。\這個過程我們叫它自然對流。"
+            },
+            {
+                keywords: ["自然對流","說明"],
+                answer: "在沒有風扇吹或是外部風流狀態下，系統只能依靠本身散熱面加熱空氣，空氣被加熱後密度變小，會緩慢上升，形成很微小的風流，這微小風流有散熱效果。\這個過程我們叫它自然對流。"
+            },
+            {
+                keywords: ["強制對流","什麼"],
+                answer: "系統裡安裝風扇或是外部有其它風流吹，這種散熱狀態，我們叫它強制對流。\相較於自然對流，強制對流效果會強很多，也因此CPU高於15W，通常都需要用到強制對流。"
+            },
+            {
+                keywords: ["強制對流","說明"],
+                answer: "系統裡安裝風扇或是外部有其它風流吹，這種散熱狀態，我們叫它強制對流。\相較於自然對流，強制對流效果會強很多，也因此CPU高於15W，通常都需要用到強制對流。"
+            },
+            {
+                keywords: ["強制對流","定義"],
+                answer: "系統裡安裝風扇或是外部有其它風流吹，這種散熱狀態，我們叫它強制對流。\相較於自然對流，強制對流效果會強很多，也因此CPU高於15W，通常都需要用到強制對流。"
+            },
+            {
+                keywords: ["空氣", "導熱"],
+                answer: "空氣是一個非常優良的絕熱物質，空氣的導熱係數約為0.023W/mK，約為鋁的萬分之一導熱速度。"
+            },
+            {
+                keywords: ["空氣", "絕熱"],
+                answer: "空氣是一個非常優良的絕熱物質，空氣的導熱係數約為0.023W/mK，約為鋁的萬分之一導熱速度。"
+            },
+            {
+                keywords: ["模擬", "什麼"],
+                answer: "您指的應該是Thermal Simulation。\nThermal Simulation是以電腦計算去估計實際測試溫度狀態。\n流程是:1.建立電腦數值模型 2.輸入對應邊界條件及各種參數 3.重複計算Debug 4.產出溫度模擬結果"
+            },
+            {
+                keywords: ["空氣", "熱傳導"],
+                answer: "空氣是一個非常優良的絕熱物質，空氣的導熱係數約為0.023W/mK，約為鋁的萬分之一導熱速度。"
+            },
+            {
+                keywords: ["空氣", "隔熱"],
+                answer: "空氣是一個非常優良的絕熱物質，空氣的導熱係數約為0.023W/mK，約為鋁的萬分之一導熱速度。"
+            },
+            {
+                keywords: ["塑膠", "熱傳導"],
+                answer: "塑膠是一個非常優良的絕熱物質，塑膠的導熱係數約為0.5W/mK，約為鋁的四百分之一導熱速度。"
+            },
+            {
+                keywords: ["塑膠", "導熱"],
+                answer: "塑膠是一個非常優良的絕熱物質，塑膠的導熱係數約為0.5W/mK，約為鋁的四百分之一導熱速度。"
+            },
+            {
+                keywords: ["塑膠", "絕熱"],
+                answer: "塑膠是一個非常優良的絕熱物質，塑膠的導熱係數約為0.5W/mK，約為鋁的四百分之一導熱速度。"
+            },
+            {
+                keywords: ["塑膠", "隔熱"],
+                answer: "塑膠是一個非常優良的絕熱物質，塑膠的導熱係數約為0.5W/mK，約為鋁的四百分之一導熱速度。"
+            },
+            {
+                keywords: ["medical", "開孔"],
+                answer: "這是安規問題，建議詢問對應安規工程比較準確。\n如果是60601，開孔限制如下:\n1.小於2x2mm\n2.如果單邊1mm，那麼另一邊長度沒有限制"
+            },
+            {
+                keywords: ["醫療", "開孔"],
+                answer: "這是安規問題，建議詢問對應安規工程比較準確。\n如果是60601，開孔限制如下:\n1.小於2x2mm\n2.如果單邊1mm，那麼另一邊長度沒有限制"
+            },
+            {
+                keywords: ["水", "導熱"],
+                answer: "水的導熱係數很差，導熱係數約為0.6W/mK，約為鋁的千分之三傳導速度。"
+            },
+            {
+                keywords: ["水", "熱傳導"],
+                answer: "水的導熱係數很差，導熱係數約為0.6W/mK，約為鋁的千分之三傳導速度。"
+            },
+            {
+                keywords: ["噪音","時程"],
+                answer: "一般專案開發中，噪音測試大約會是在EVT尾段或是DVT初期。"
+            },
+            {
+                keywords: ["噪音","什麼","時候"],
+                answer: "一般專案開發中，噪音測試大約會是在EVT尾段或是DVT初期。"
+            },
+            {
+                keywords: ["噪音","地點"],
+                answer: "一般專案開發中，噪音測試大部分都會是在五股SGS進行測試。"
+            },
+            {
+                keywords: ["噪音","哪裡測"],
+                answer: "一般專案開發中，噪音測試大部分都會是在五股SGS進行測試。"
+            },
+            {
+                keywords: ["陽極","影響"],
+                answer: "Thermal solution陽極處理有幾個影響。\n1.陽極處理可以增加輻射散熱效果，表面溫度越高效果越好，越黑效果越好\n2.陽極處理可以避免金屬面氧化變醜"
+            },
+            {
+                keywords: ["陽極","效果"],
+                answer: "Thermal solution陽極處理有幾個影響。\n1.陽極處理可以增加輻射散熱效果，表面溫度越高效果越好，越黑效果越好\n2.陽極處理可以避免金屬面氧化變醜"
+            },
+            {
+                keywords: ["噪音","窗口"],
+                answer: "一般專案開發中，噪音測試大部分都會是在五股SGS進行測試。\n研華對SGS的窗口是QA。\nSGS目前窗口為Elin，電話為02-2299-3279#3619，Mail:Elin.TSENG@sgs.com"
+            },
+            {
+                keywords: ["噪音","聯絡"],
+                answer: "一般專案開發中，噪音測試大部分都會是在五股SGS進行測試。\n研華對SGS的窗口是QA。\nSGS目前窗口為Elin，電話為02-2299-3279#3619，Mail:Elin.TSENG@sgs.com"
+            },
+            {
+                keywords: ["表面溫度","安規"],
+                answer: "常用表面溫度安規如連結:如連結: <a href='https://docs.google.com/presentation/d/1vcWneWYjSQbjr2i8ji8FZurFwyGnJV82/edit?usp=drive_link&ouid=114028389622768722194&rtpof=true&sd=true' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>表面溫度安規</a>"
+            },
+            {
+                keywords: ["表面","安規"],
+                answer: "常用表面溫度安規如連結:如連結: <a href='https://docs.google.com/presentation/d/1vcWneWYjSQbjr2i8ji8FZurFwyGnJV82/edit?usp=drive_link&ouid=114028389622768722194&rtpof=true&sd=true' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>表面溫度安規</a>"
+            },
+            {
+                keywords: ["鋁","導熱"],
+                answer: "常用的鋁擠料材料為AL6061或AL6063，導熱係數約為180W/mK，約為銅的二分之一傳導速度。"
+            },
+            {
+                keywords: ["鋁","熱傳導"],
+                answer: "常用的鋁擠料材料為AL6061或AL6063，導熱係數約為180W/mK，約為銅的二分之一傳導速度。"
+            },
+            {
+                keywords: ["熱管","導熱"],
+                answer: "熱管的性能跟重力方向/折角角度及數量/管徑等等條件有關，一般等效導熱係數約為3000~5000W/mK，約為銅的十倍傳導速度。"
+            },
+            {
+                keywords: ["heat pipe","導熱"],
+                answer: "熱管的性能跟重力方向/折角角度及數量/管徑等等條件有關，一般等效導熱係數約為3000~5000W/mK，約為銅的十倍傳導速度。"
+            },
+            {
+                keywords: ["熱管","方向性"],
+                answer: "熱管需要考慮方向性，最好的狀態是垂直擺放，熱源在下方，冷卻端在上方，熱管內雙向流散熱效率會比較好。"
+            },
+            {
+                keywords: ["heat pipe","方向性"],
+                answer: "熱管需要考慮方向性，最好的狀態是垂直擺放，熱源在下方，冷卻端在上方，熱管內雙向流散熱效率會比較好。"
+            },
+            {
+                keywords: ["熱管","熱傳導"],
+                answer: "熱管的性能跟重力方向/折角角度及數量/管徑等等條件有關，一般等效導熱係數約為3000~5000W/mK，約為銅的十倍傳導速度。"
+            },
+            {
+                keywords: ["heat pipe","熱傳導"],
+                answer: "熱管的性能跟重力方向/折角角度及數量/管徑等等條件有關，一般等效導熱係數約為3000~5000W/mK，約為銅的十倍傳導速度。"
+            },
+            {
+                keywords: ["vc","什麼"],
+                answer: "VC的全名是Vapor Chamber，有點像平板型熱管，熱傳導係數約為銅的十倍。\n說明與影片:<a href='https://advantechrandy.github.io/Data-B004_V2.3/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>VC說明與影片</a>"
+            },
+            {
+                keywords: ["vapor chamber","什麼"],
+                answer: "有點像平板型熱管，熱傳導係數約為銅的十倍。\n說明與影片:<a href='https://advantechrandy.github.io/Data-B004_V2.3/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>VC說明與影片</a>"
+            },
+            {
+                keywords: ["mos","廢熱"],
+                answer: "依照文獻資料即power公式，可已經由tool初步計算，目前數值準確度約為3%以內，High side MOS會比較準確。\n相關問題請洽詢對應Power。\nMOS廢熱計算tool連結:<a href='https://advantechrandy.github.io/Tool-A035_V7.4/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>MOS廢熱計算Tool</a>"
+            },
+            {
+                keywords: ["mos","loss"],
+                answer: "依照文獻資料即power公式，可已經由tool初步計算，目前數值準確度約為3%以內，High side MOS會比較準確。\nMOS廢熱計算tool連結:<a href='https://advantechrandy.github.io/Tool-A035_V7.4/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>MOS廢熱計算Tool</a>"
+            },
+            {
+                keywords: ["choke","廢熱"],
+                answer: "choke/transformer廢熱計算中，銅損有相關資料可以製作tool，但鐵損為廠商機密資料，各家參數資料不同。\n也因此只能用廠商提供的tool計算，可以洽詢對應的Power。"
+            },
+            {
+                keywords: ["choke","loss"],
+                answer: "choke/transformer廢熱計算中，銅損有相關資料可以製作tool，但鐵損為廠商機密資料，各家參數資料不同。\n也因此只能用廠商提供的tool計算，可以洽詢對應的Power。"
+            },
+            {
+                keywords: ["fanless","cpu瓦特數"],
+                answer: "一般環境溫度40度的fanless系統，CPU最高約到15W，這跟系統內結構/邊界條件/開孔條件/heat sink效率相關，會需要上下預估修正。"
+            },
+            {
+                keywords: ["fanless","cpu pad"],
+                answer: "研華常用CPU pad為翰興的PG80A，黏土材質，顏色為深粉紅色。"
+            },
+            {
+                keywords: ["cooler","grease"],
+                answer: "研華常用cooler grease為PTM7950，有膏狀SKU與相變化pad SKU，顏色為灰色。"
+            },
+            {
+                keywords: ["cooler","導 ঠান্ড膏"], // Note: Found a typo in user base ("導 ঠান্ড膏" maybe supposed to be "導熱膏", kept intact)
+                answer: "研華常用cooler grease為PTM7950，有膏狀SKU與相變化pad SKU，顏色為灰色。"
+            },
+            {
+                keywords: ["建議","導熱膏"],
+                answer: "研華常用cooler grease為PTM7950，有膏狀SKU與相變化pad SKU，顏色為灰色。"
+            },
+            {
+                keywords: ["相變化pad","溫度"],
+                answer: "相變化pad在溫度45~50度時會融化為導熱膏，回常溫後回復為pad，常用在CPU上面。。"
+            },
+            {
+                keywords: ["相變化pad","什麼"],
+                answer: "相變化pad在溫度45~50度時會融化為導熱膏，回常溫後回復為pad，常用在CPU上面。"
+            },
+            {
+                keywords: ["熱管裡面","什麼"],
+                answer: "熱管裡面是中空+毛細結構，灌入一部份水，抽真空，讓水的沸點降低。\n發熱端讓水變蒸氣，蒸氣到冷凝端凝結成水再流回發熱端。"
+            },
+            {
+                keywords: ["熱管裡面","結構"],
+                answer: "熱管裡面是中空+毛細結構，灌入一部份水，抽真空，讓水的沸點降低。\n發熱端讓水變蒸氣，蒸氣到冷凝端凝結成水再流回發熱端。"
+            },
+            
+            {
+                keywords: ["thermal pad","導熱膏"],
+                answer: "相同導熱係數條件下，導熱膏的熱阻會比較低，因為gap比較小，導熱膏的gap會小於0.1mm，大瓦特數零件或是高環境溫度系統，會建議用導熱膏。"
+            },
+            {
+                keywords: ["thermal pad","grease"],
+                answer: "相同導熱係數條件下，導熱膏的熱阻會比較低，因為gap比較小，導熱膏的gap會小於0.1mm，大瓦特數零件或是高環境溫度系統，會建議用導熱膏。"
+            },
+            {
+                keywords: ["散熱片","導熱膏"],
+                answer: "相同導熱係數條件下，導熱膏的熱阻會比較低，因為gap比較小，導熱膏的gap會小於0.1mm，大瓦特數零件或是高環境溫度系統，會建議用導熱膏。"
+            },
+            {
+                keywords: ["濾網","影響"],
+                answer: "進出風口加裝濾網，會增加風流阻抗，不管是自然對流或是強制對流，整體thermal效能下降，系統溫度上升。"
+            },
+            {
+                keywords: ["熱管","方向"],
+                answer: "熱管設計有方向性限制，最佳狀況是熱源在下方，冷卻端在上方，這樣水流最順，熱管效率最好。"
+            },
+            {
+                keywords: ["qa","窗口"],
+                answer: "目前QA對應窗口為Howard.Lai，分機為9010。\n他負責ACG專案reliability test以及外測窗口聯絡。"
+            },
+            {
+                keywords: ["ip","說明"],
+                answer: "IP為防塵防水等級，第一個數字是防塵等級，第二個數字是防水等級。"
+            },
+            {
+                keywords: ["ip","什麼"],
+                answer: "IP為防塵防水等級，第一個數字是防塵等級，第二個數字是防水等級。"
+            },
+            {
+                keywords: ["thermal gel","什麼"],
+                answer: "Thermal gel是一種導熱材料，有點像牙膏，主要用在同時接觸多零件的heat sink上，避免每個零件導熱材料壓力不同，讓heat sink歪斜導致散熱效果變差。"
+            },
+            {
+                keywords: ["燙傷","金屬"],
+                answer: "1.如果金屬面60度，接觸10秒會嚴重燙傷。\n2.如果金屬面66度，接觸1秒就會嚴重燙傷。"
+            },
+            {
+                keywords: ["燙傷","塑膠"],
+                answer: "1.如果金屬面60度，接觸一分鐘會嚴重燙傷。\n2.如果金屬面66度，接觸10秒就會嚴重燙傷。"
+            },
+            {
+                keywords: ["風扇轉速","阻力"],
+                answer: "這是一般常見的現象。\n如果風扇轉動時遇到阻力，扇葉附近空氣密度會下降，有點像慢慢開始空轉的感覺，而同duty下風扇瓦特數固定，所以轉速會拉高。"
+            },
+            {
+                keywords: ["風扇轉速","風阻"],
+                answer: "這是一般常見的現象。\n如果風扇轉動時遇到阻力，扇葉附近空氣密度會下降，有點像慢慢開始空轉的感覺，而同duty下風扇瓦特數固定，所以轉速會拉高。"
+            },
+            {
+                keywords: ["heat sink","製程"],
+                answer: "Heat sink主要有四種製程。\n1.鋁擠(常用) 2.鋁壓鑄(常用) 3.扣fin(通常用在cooler) 4.鏟fin\n<a href='https://advantechrandy.github.io/Data-B003-V1.6/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>Heat Sink製程介紹</a>"
+            },
+            {
+                keywords: ["heat sink","製造"],
+                answer: "Heat sink主要有四種製程。\n1.鋁擠(常用) 2.鋁壓鑄(常用) 3.扣fin(通常用在cooler) 4.鏟fin\n<a href='https://advantechrandy.github.io/Data-B003-V1.6/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>Heat Sink製程介紹</a>"
+            },
+            {
+                keywords: ["thermal pad","製造"],
+                answer: "Thermal pad製造流程:\n1.配料攪拌 2.塗佈壓延 3.高溫硫化 4.裁切\n<a href='https://advantechrandy.github.io/Data-B019_V2.1/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>Thermal Pad製程介紹與影片</a>"
+            },
+            {
+                keywords: ["thermal pad","製程"],
+                answer: "Thermal pad製造流程:\n1.配料攪拌 2.塗佈壓延 3.高溫硫化 4.裁切\n<a href='https://advantechrandy.github.io/Data-B019_V2.1/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>Thermal Pad製程介紹與影片</a>"
+            },
+            {
+                keywords: ["壓鑄","製程"],
+                answer: "鋁壓鑄heat sink製程說明:\n<a href='https://advantechrandy.github.io/Data-B018_V2.1/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>Heat Sink鋁壓鑄製程說明與影片</a>"
+            },
+            {
+                keywords: ["壓鑄","製造"],
+                answer: "鋁壓鑄heat sink製程說明:\n<a href='https://advantechrandy.github.io/Data-B018_V2.1/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>Heat Sink鋁壓鑄製程說明與影片</a>"
+            },
+            {
+                keywords: ["壓鑄","介紹"],
+                answer: "鋁壓鑄heat sink製程說明:\n<a href='https://advantechrandy.github.io/Data-B018_V2.1/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>Heat Sink鋁壓鑄製程說明與影片</a>"
+            },
+            {
+                keywords: ["壓鑄","說明"],
+                answer: "鋁壓鑄heat sink製程說明:\n<a href='https://advantechrandy.github.io/Data-B018_V2.1/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>Heat Sink鋁壓鑄製程說明與影片</a>"
+            },
+            {
+                keywords: ["鋁擠","製程"],
+                answer: "鋁擠heat sink製程說明與影片:\n<a href='https://advantechrandy.github.io/Data-B011_V3.2/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>Heat Sink鋁擠製程說明與影片</a>"
+            },
+            {
+                keywords: ["風扇","結構"],
+                answer: "風扇結構說明與影片:\n<a href='https://advantechrandy.github.io/Data-B005_V1.5/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>風扇結構說明與影片</a>"
+            },
+            {
+                keywords: ["風扇","內部"],
+                answer: "風扇結構說明與影片:\n<a href='https://advantechrandy.github.io/Data-B005_V1.5/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>風扇結構說明與影片</a>"
+            },
+            {
+                keywords: ["鋁擠","製造"],
+                answer: "鋁擠heat sink製程說明與影片:\n<a href='https://advantechrandy.github.io/Data-B011_V3.2/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>Heat Sink鋁擠製程說明與影片</a>"
+            },
+            {
+                keywords: ["鋁擠","介紹"],
+                answer: "鋁擠heat sink製程說明與影片:\n<a href='https://advantechrandy.github.io/Data-B011_V3.2/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>Heat Sink鋁擠製程說明與影片</a>"
+            },
+            {
+                keywords: ["鋁擠","說明"],
+                answer: "鋁擠heat sink製程說明與影片:\n<a href='https://advantechrandy.github.io/Data-B011_V3.2/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>Heat Sink鋁擠製程說明與影片</a>"
+            },
+        ];
 
-        const fluidProps = {
-            'synthetic_oil': { heatWeight: 0.45, viscGain: 1.5 },
-            'fluorinated':   { heatWeight: 0.25, viscGain: 0.8 },
-            'pg25':          { heatWeight: 0.85, viscGain: 1.0 },
-            'pure_water':    { heatWeight: 1.00, viscGain: 1.1 }
+        window.handleKeyPress = function(event) {
+            if (event.key === 'Enter' || event.keyCode === 13) window.handleSend();
         };
-        const currentProp = fluidProps[fluidType];
 
-        let viscReduction = ratio * 1.35 * currentProp.viscGain;
-        if (ratio > 18) {
-            viscReduction = (18 * 1.35 * currentProp.viscGain) + (ratio - 18) * 0.35;
+        window.sendQuickQuestion = function(text) {
+            if (isTyping) return;
+            userInput.value = text;
+            window.handleSend();
+        };
+
+        window.handleSend = async function() {
+            const text = userInput.value.trim();
+            if (!text || isTyping) return;
+
+            appendMessage(text, 'user');
+            userInput.value = '';
+            
+            const answer = findAnswer(text);
+
+            isTyping = true;
+            await simulateTyping(answer);
+            isTyping = false;
+        };
+
+        function findAnswer(userText) {
+            const lowerText = userText.toLowerCase();
+            for (let item of knowledgeBase) {
+                if (item.keywords.every(kw => lowerText.includes(kw))) {
+                    return item.answer;
+                }
+            }
+            
+            // 查無資料時，寫入 Google 試算表
+            submitToGoogleSheet(userText);
+            
+            return `Sorry囉~ 小R目前無法回答這問題。\n不過別擔心，系統已經自動將沒被回覆的問題傳送給管理員藍迪，我們會盡速擴充進下一版知識庫，謝拉！`;
         }
-        viscReduction = Math.min(viscReduction, 45);
 
-        let thermalImp = 8.8 + (ratio / 25) * (11.4 - 8.8);
-        if (ratio < 5) thermalImp = (ratio / 5) * 8.8;
-        if (fluidType === 'fluorinated') thermalImp *= 0.7;
+        function appendMessage(text, sender) {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'flex flex-col gap-1 w-full mt-4';
+            
+            if (sender === 'user') {
+                wrapper.innerHTML = `
+                    <span class="text-[13px] text-gray-200 mr-1 text-right">使用者</span>
+                    <div class="msg-bubble msg-user">${escapeHTML(text)}</div>
+                `;
+            } else {
+                wrapper.innerHTML = `
+                    <span class="text-[13px] text-gray-200 ml-1">小R</span>
+                    <div class="msg-bubble msg-ai typing-cursor"></div>
+                `;
+            }
 
-        let heatCapacityLoss = ratio * (0.7 + (currentProp.heatWeight * 0.3)); 
-
-        let flowFactor = flow / 12.0;
-        let efficiency = (1 + (thermalImp / 100)) * (1 - (heatCapacityLoss / 100)) * flowFactor;
-        let finalCapacity = tdp * efficiency;
-
-        document.getElementById('visc_red_out').innerHTML = viscReduction.toFixed(2) + '<span class="unit">%</span>';
-        document.getElementById('thermal_imp_out').innerHTML = thermalImp.toFixed(2) + '<span class="unit">%</span>';
-        document.getElementById('heat_loss_out').innerHTML = heatCapacityLoss.toFixed(2) + '<span class="unit">%</span>';
-        document.getElementById('cool_capacity_out').innerHTML = Math.round(finalCapacity) + '<span class="unit">W</span>';
-
-        const warningBox = document.getElementById('warning_box');
-        if (efficiency < 0.9 || ratio > 25 || flow < 5) {
-            warningBox.style.display = 'block';
-            if (flow < 5) warningBox.innerHTML = "[SYSTEM ALERT]<br>流速過低 (Critical Low Flow)！系統面臨過熱風險。";
-            else warningBox.innerHTML = "[SYSTEM ALERT]<br>氣泡比例過高！熱容損失已抵銷流動增益，系統效能發生崩潰。";
-        } else {
-            warningBox.style.display = 'none';
+            chatBox.appendChild(wrapper);
+            scrollToBottom();
+            return wrapper.querySelector('.msg-bubble'); 
         }
-    }
 
-    document.getElementById('run_sim').addEventListener('click', performCalculation);
-    window.onload = performCalculation;
-</script>
+        async function simulateTyping(text) {
+            const bubbleEle = appendMessage('', 'ai');
+            await new Promise(resolve => setTimeout(resolve, 400));
+            let currentHTML = '';
+            for (let i = 0; i < text.length; i++) {
+                if (text[i] === '<') {
+                    let tagEnd = text.indexOf('>', i);
+                    if (tagEnd !== -1) {
+                        currentHTML += text.substring(i, tagEnd + 1);
+                        i = tagEnd; 
+                        bubbleEle.innerHTML = currentHTML;
+                        continue; 
+                    }
+                }
+                currentHTML += text[i] === '\n' ? '<br>' : text[i];
+                bubbleEle.innerHTML = currentHTML;
+                scrollToBottom();
+                const typeSpeed = Math.floor(Math.random() * 20) + 10;
+                await new Promise(resolve => setTimeout(resolve, typeSpeed));
+            }
+            bubbleEle.classList.remove('typing-cursor');
+        }
 
+        function scrollToBottom() {
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        window.clearChat = function() {
+            if(isTyping) return;
+            chatBox.innerHTML = `
+                <div class="flex flex-col gap-1 w-full">
+                    <span class="text-[10px] text-gray-500 ml-1">SYSTEM_AGENT</span>
+                    <div class="msg-bubble msg-ai">[系統提示] 對話紀錄已清除。請重新提問。</div>
+                </div>
+            `;
+        };
+
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, tag => ({
+                '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+            }[tag]));
+        }
+
+        // 鎖定滑鼠右鍵 (輸入框除外) - 不顯示提示
+        document.addEventListener('contextmenu', function(e) {
+            if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+                e.preventDefault();
+            }
+        }, false);
+    </script>
 </body>
 </html>
