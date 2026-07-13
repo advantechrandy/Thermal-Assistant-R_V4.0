@@ -176,7 +176,7 @@
                 <div class="w-3 h-3 rounded-full bg-[#00ff9d] shadow-[0_0_8px_#00ff9d] animate-pulse"></div>
                 <div>
                     <h1 class="text-lg font-bold text-white tracking-wide">THERMAL ASSISTANT 小R</h1>
-                    <p class="text-[10px] text-gray-400 uppercase tracking-wider">開發者:藍迪 V3.9</p>
+                    <p class="text-[10px] text-gray-400 uppercase tracking-wider">開發者:藍迪 V4.0</p>
                 </div>
             </div>
             <div class="flex items-center gap-4">
@@ -200,7 +200,7 @@
         <!-- Input Area -->
         <div class="p-4 bg-[#0d1712] border-t border-[#163323]">
             <div class="flex gap-2 overflow-x-auto pb-3 mb-1 no-scrollbar" id="quickQuestions">
-                <button class="quick-chip" onclick="sendQuickQuestion('跑熱模擬需要什麼資料？')">跑熱模擬需要什麼資料？</button>
+                <button class="quick-chip" onclick="sendQuickQuestion('跑模擬需要那些資料？')">跑模擬需要哪些資料？</button>
                 <button class="quick-chip" onclick="sendQuickQuestion('Heat Sink製程介紹')">Heat Sink製程</button>
                 <button class="quick-chip" onclick="sendQuickQuestion('Thermal pad製程介紹影片')">Thermal pad製程(含影片)</button>
                 <button class="quick-chip" onclick="sendQuickQuestion('鋁擠製程介紹影片')">鋁擠製程(含影片)</button>
@@ -280,28 +280,44 @@
                 answer: "Noise test規範主要有三種。\n1.sound pressure test，研華最常用的測試規範，因為風扇datasheet上面只有sound pressure數據，才有辦法初步評估。\n2.sound power。\n3.sound quality。"
             },
             {
-                keywords: ["heat sink","零件","gap","用","多厚","thermal pad"],
-                answer: "Thermal pad初步設計的壓縮比約30%。\n如果thermal pad 1mm厚度，那麼建議gap= 1*0.7= 0.7mm \n如果gap是1mm, 那麼thermal pad建議厚度= 1/0.7 =1.43mm，但themral pad有固定公規厚度，需要找近似厚度。"
+                keywords: ["heat sink","鰭片","怎麼","最佳化"],
+                answer: "Heat sink鰭片最佳化，精準做法是跑模擬去分析，這部分可以請Thermal分析。\n已著手開發初步計算tool，還需要時間校正debug。"
             },
             {
-                keywords: ["heatsink","零件","gap","用","多厚","thermal pad"],
-                answer: "Thermal pad初步設計的壓縮比約30%。\n如果thermal pad 1mm厚度，那麼建議gap= 1*0.7= 0.7mm \n如果gap是1mm, 那麼thermal pad建議厚度= 1/0.7 =1.43mm，但themral pad有固定公規厚度，需要找近似厚度。"
+                keywords: ["heatsink","鰭片","怎麼","最佳化"],
+                answer: "Heat sink鰭片最佳化，精準做法是跑模擬去分析，這部分可以請Thermal分析。\n已著手開發初步計算tool，還需要時間校正debug。"
             },
             {
-                keywords: ["heat sink","零件","gap","用","多厚","導熱片"],
-                answer: "Thermal pad初步設計的壓縮比約30%。\n如果thermal pad 1mm厚度，那麼建議gap= 1*0.7= 0.7mm \n如果gap是1mm, 那麼thermal pad建議厚度= 1/0.7 =1.43mm，但themral pad有固定公規厚度，需要找近似厚度。"
+                keywords: ["heat sink","fin","怎麼","最佳化"],
+                answer: "Heat sink鰭片最佳化，精準做法是跑模擬去分析，這部分可以請Thermal分析。\n已著手開發初步計算tool，還需要時間校正debug。"
             },
             {
-                keywords: ["heatsink","零件","gap","用","多厚","導熱片"],
-                answer: "Thermal pad初步設計的壓縮比約30%。\n如果thermal pad 1mm厚度，那麼建議gap= 1*0.7= 0.7mm \n如果gap是1mm, 那麼thermal pad建議厚度= 1/0.7 =1.43mm，但themral pad有固定公規厚度，需要找近似厚度。"
+                keywords: ["heatsink","fin","怎麼","最佳化"],
+                answer: "Heat sink鰭片最佳化，精準做法是跑模擬去分析，這部分可以請Thermal分析。\n已著手開發初步計算tool，還需要時間校正debug。"
             },
             {
-                keywords: ["heat sink","零件","gap","用","多厚","散熱片"],
-                answer: "Thermal pad初步設計的壓縮比約30%。\n如果thermal pad 1mm厚度，那麼建議gap= 1*0.7= 0.7mm \n如果gap是1mm, 那麼thermal pad建議厚度= 1/0.7 =1.43mm，但themral pad有固定公規厚度，需要找近似厚度。"
+                keywords: ["heat sink","零件","gap","需要","多厚","thermal pad"],
+                answer: "Thermal pad初步設計的壓縮比約30%。\n如果thermal pad 1mm厚度，那麼建議gap= 1*0.7= 0.7mm \n如果gap是1mm, 那麼thermal pad建議厚度= 1/0.7 =1.43mm，但themral pad有固定公規厚度，需要找近似厚度。\n請依上面計算說明計算。"
             },
             {
-                keywords: ["heatsink","零件","gap","用","多厚","散熱片"],
-                answer: "Thermal pad初步設計的壓縮比約30%。\n如果thermal pad 1mm厚度，那麼建議gap= 1*0.7= 0.7mm \n如果gap是1mm, 那麼thermal pad建議厚度= 1/0.7 =1.43mm，但themral pad有固定公規厚度，需要找近似厚度。"
+                keywords: ["heatsink","零件","gap","需要","多厚","thermal pad"],
+                answer: "Thermal pad初步設計的壓縮比約30%。\n如果thermal pad 1mm厚度，那麼建議gap= 1*0.7= 0.7mm \n如果gap是1mm, 那麼thermal pad建議厚度= 1/0.7 =1.43mm，但themral pad有固定公規厚度，需要找近似厚度。\n請依上面計算說明計算。"
+            },
+            {
+                keywords: ["heat sink","零件","gap","需要","多厚","導熱片"],
+                answer: "Thermal pad初步設計的壓縮比約30%。\n如果thermal pad 1mm厚度，那麼建議gap= 1*0.7= 0.7mm \n如果gap是1mm, 那麼thermal pad建議厚度= 1/0.7 =1.43mm，但themral pad有固定公規厚度，需要找近似厚度。\n請依上面計算說明計算。"
+            },
+            {
+                keywords: ["heatsink","零件","gap","需要","多厚","導熱片"],
+                answer: "Thermal pad初步設計的壓縮比約30%。\n如果thermal pad 1mm厚度，那麼建議gap= 1*0.7= 0.7mm \n如果gap是1mm, 那麼thermal pad建議厚度= 1/0.7 =1.43mm，但themral pad有固定公規厚度，需要找近似厚度。\n請依上面計算說明計算。"
+            },
+            {
+                keywords: ["heat sink","零件","gap","需要","多厚","散熱片"],
+                answer: "Thermal pad初步設計的壓縮比約30%。\n如果thermal pad 1mm厚度，那麼建議gap= 1*0.7= 0.7mm \n如果gap是1mm, 那麼thermal pad建議厚度= 1/0.7 =1.43mm，但themral pad有固定公規厚度，需要找近似厚度。\n請依上面計算說明計算。"
+            },
+            {
+                keywords: ["heatsink","零件","gap","需要","多厚","散熱片"],
+                answer: "Thermal pad初步設計的壓縮比約30%。\n如果thermal pad 1mm厚度，那麼建議gap= 1*0.7= 0.7mm \n如果gap是1mm, 那麼thermal pad建議厚度= 1/0.7 =1.43mm，但themral pad有固定公規厚度，需要找近似厚度。\n請依上面計算說明計算。"
             },
             {
                 keywords: ["thermal pad","採購","是誰"],
@@ -486,6 +502,38 @@
             {
                 keywords: ["thermal profile test","什麼"],
                 answer: "QA的thermal profile test跟thermal做的溫度測試相同，算是double check test，通常thermal測試pass後，QA測試應該也會pass。"
+            },
+            {
+                keywords: ["跑模擬","需要","那些資料"],
+                answer: "模擬需要資料如下，資料全部到齊確認OK後才能進行排程喔，模擬需要工作天數3~4天，依照系統複雜度不同。\n1.回填廢熱表(EE/Power)，如下載連結: <a href='https://docs.google.com/spreadsheets/d/1ZNCjw0w1ElHVHm2Zcb1UZNgbpNfouEvX/edit?usp=drive_link&ouid=114028389622768722194&rtpof=true&sd=true' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>模擬廢熱表</a>\n2.廢熱表內零件datasheet(EE/Power)。\n3.廢熱表內零件位置圖(EE/Power)。\n4.系統3D X_T file，需要包含主要發熱零件(ME)。\n5.系統環境溫度規格與噪音規格(PM)。"
+            },
+            {
+                keywords: ["跑模擬","需要","哪些資料"],
+                answer: "模擬需要資料如下，資料全部到齊確認OK後才能進行排程喔，模擬需要工作天數3~4天，依照系統複雜度不同。\n1.回填廢熱表(EE/Power)，如下載連結: <a href='https://docs.google.com/spreadsheets/d/1ZNCjw0w1ElHVHm2Zcb1UZNgbpNfouEvX/edit?usp=drive_link&ouid=114028389622768722194&rtpof=true&sd=true' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>模擬廢熱表</a>\n2.廢熱表內零件datasheet(EE/Power)。\n3.廢熱表內零件位置圖(EE/Power)。\n4.系統3D X_T file，需要包含主要發熱零件(ME)。\n5.系統環境溫度規格與噪音規格(PM)。"
+            },
+            {
+                keywords: ["跑simulation","需要","那些資料"],
+                answer: "模擬需要資料如下，資料全部到齊確認OK後才能進行排程喔，模擬需要工作天數3~4天，依照系統複雜度不同。\n1.回填廢熱表(EE/Power)，如下載連結: <a href='https://docs.google.com/spreadsheets/d/1ZNCjw0w1ElHVHm2Zcb1UZNgbpNfouEvX/edit?usp=drive_link&ouid=114028389622768722194&rtpof=true&sd=true' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>模擬廢熱表</a>\n2.廢熱表內零件datasheet(EE/Power)。\n3.廢熱表內零件位置圖(EE/Power)。\n4.系統3D X_T file，需要包含主要發熱零件(ME)。\n5.系統環境溫度規格與噪音規格(PM)。"
+            },
+            {
+                keywords: ["跑simulation","需要","哪些資料"],
+                answer: "模擬需要資料如下，資料全部到齊確認OK後才能進行排程喔，模擬需要工作天數3~4天，依照系統複雜度不同。\n1.回填廢熱表(EE/Power)，如下載連結: <a href='https://docs.google.com/spreadsheets/d/1ZNCjw0w1ElHVHm2Zcb1UZNgbpNfouEvX/edit?usp=drive_link&ouid=114028389622768722194&rtpof=true&sd=true' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>模擬廢熱表</a>\n2.廢熱表內零件datasheet(EE/Power)。\n3.廢熱表內零件位置圖(EE/Power)。\n4.系統3D X_T file，需要包含主要發熱零件(ME)。\n5.系統環境溫度規格與噪音規格(PM)。"
+            },
+            {
+                keywords: ["模擬","需要","那些資料"],
+                answer: "模擬需要資料如下，資料全部到齊確認OK後才能進行排程喔，模擬需要工作天數3~4天，依照系統複雜度不同。\n1.回填廢熱表(EE/Power)，如下載連結: <a href='https://docs.google.com/spreadsheets/d/1ZNCjw0w1ElHVHm2Zcb1UZNgbpNfouEvX/edit?usp=drive_link&ouid=114028389622768722194&rtpof=true&sd=true' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>模擬廢熱表</a>\n2.廢熱表內零件datasheet(EE/Power)。\n3.廢熱表內零件位置圖(EE/Power)。\n4.系統3D X_T file，需要包含主要發熱零件(ME)。\n5.系統環境溫度規格與噪音規格(PM)。"
+            },
+            {
+                keywords: ["模擬","需要","哪些資料"],
+                answer: "模擬需要資料如下，資料全部到齊確認OK後才能進行排程喔，模擬需要工作天數3~4天，依照系統複雜度不同。\n1.回填廢熱表(EE/Power)，如下載連結: <a href='https://docs.google.com/spreadsheets/d/1ZNCjw0w1ElHVHm2Zcb1UZNgbpNfouEvX/edit?usp=drive_link&ouid=114028389622768722194&rtpof=true&sd=true' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>模擬廢熱表</a>\n2.廢熱表內零件datasheet(EE/Power)。\n3.廢熱表內零件位置圖(EE/Power)。\n4.系統3D X_T file，需要包含主要發熱零件(ME)。\n5.系統環境溫度規格與噪音規格(PM)。"
+            },
+            {
+                keywords: ["simulation","需要","那些資料"],
+                answer: "模擬需要資料如下，資料全部到齊確認OK後才能進行排程喔，模擬需要工作天數3~4天，依照系統複雜度不同。\n1.回填廢熱表(EE/Power)，如下載連結: <a href='https://docs.google.com/spreadsheets/d/1ZNCjw0w1ElHVHm2Zcb1UZNgbpNfouEvX/edit?usp=drive_link&ouid=114028389622768722194&rtpof=true&sd=true' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>模擬廢熱表</a>\n2.廢熱表內零件datasheet(EE/Power)。\n3.廢熱表內零件位置圖(EE/Power)。\n4.系統3D X_T file，需要包含主要發熱零件(ME)。\n5.系統環境溫度規格與噪音規格(PM)。"
+            },
+            {
+                keywords: ["simulation","需要","哪些資料"],
+                answer: "模擬需要資料如下，資料全部到齊確認OK後才能進行排程喔，模擬需要工作天數3~4天，依照系統複雜度不同。\n1.回填廢熱表(EE/Power)，如下載連結: <a href='https://docs.google.com/spreadsheets/d/1ZNCjw0w1ElHVHm2Zcb1UZNgbpNfouEvX/edit?usp=drive_link&ouid=114028389622768722194&rtpof=true&sd=true' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>模擬廢熱表</a>\n2.廢熱表內零件datasheet(EE/Power)。\n3.廢熱表內零件位置圖(EE/Power)。\n4.系統3D X_T file，需要包含主要發熱零件(ME)。\n5.系統環境溫度規格與噪音規格(PM)。"
             },
             {
                 keywords: ["模擬", "流程"],
@@ -692,15 +740,11 @@
                 answer: "寄樣機給客戶前需要確定幾件事。\n1.如果有風扇，那麼需要有初步常溫fan control table設計 \n2.EE需要確認系統是正常 \n3.themral掃一下常溫full load，看溫度是否正常 \n4.AE確認系統是否正常"
             },
             {
-                keywords: ["模擬","要幾天"],
-                answer: "一般跑模擬需要約3~4天，看系統的複雜度。\n目前五個工程師用兩套軟體，需要預約排隊。"
-            },
-            {
                 keywords: ["跑模擬","要幾天"],
                 answer: "一般跑模擬需要約3~4天，看系統的複雜度。\n目前五個工程師用兩套軟體，需要預約排隊。"
             },
             {
-                keywords: ["simulation","要幾天"],
+                keywords: ["跑simulation","要幾天"],
                 answer: "一般跑模擬需要約3~4天，看系統的複雜度。\n目前五個工程師用兩套軟體，需要預約排隊。"
             },
             {
@@ -780,19 +824,19 @@
                 answer: "常用表面溫度安規如連結: <a href='https://docs.google.com/presentation/d/1vcWneWYjSQbjr2i8ji8FZurFwyGnJV82/edit?usp=drive_link&ouid=114028389622768722194&rtpof=true&sd=true' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>表面溫度安規</a>"
             },
             {
-                keywords: ["fan control","什麼"],
+                keywords: ["fan control","是什麼"],
                 answer: "風扇控制通常指系統smart fan control，在BIOS設定溫度對應duty表，讓風扇可以跟著溫度自動控制。"
             },
             {
-                keywords: ["fan control","請解釋"],
+                keywords: ["fan control","什麼是"],
                 answer: "風扇控制通常指系統smart fan control，在BIOS設定溫度對應duty表，讓風扇可以跟著溫度自動控制。"
             },
             {
-                keywords: ["風扇控制","什麼"],
+                keywords: ["風扇控制","是什麼"],
                 answer: "風扇控制通常指系統smart fan control，在BIOS設定溫度對應duty表，讓風扇可以跟著溫度自動控制。"
             },
             {
-                keywords: ["風扇控制","請解釋"],
+                keywords: ["風扇控制","什麼是"],
                 answer: "風扇控制通常指系統smart fan control，在BIOS設定溫度對應duty表，讓風扇可以跟著溫度自動控制。"
             },
             {
@@ -816,12 +860,13 @@
                 answer: "一般配置風扇需要提供以下幾個條件給thermal評估。\n1.系統大小，長寬高，風扇剩多少限制空間。\n2.系統noise限制。\n3.系統整體廢熱，主要零件廢熱。"
             },
             {
-                keywords: ["模擬", "需要", "資料"],
+                keywords: ["跑模擬", "需要", "資料","什麼"],
                 // 加入 a 標籤與 css 樣式。雙斜線路徑在字串中需要使用 '\\' 來避免跳脫。
                 answer: "模擬需要資料如下，資料全部到齊確認OK後才能進行排程喔。\n1.回填廢熱表(EE/Power)，如下載連結: <a href='https://docs.google.com/spreadsheets/d/1ZNCjw0w1ElHVHm2Zcb1UZNgbpNfouEvX/edit?usp=drive_link&ouid=114028389622768722194&rtpof=true&sd=true' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>模擬廢熱表</a>\n2.廢熱表內零件datasheet(EE/Power)。\n3.廢熱表內零件位置圖(EE/Power)。\n4.系統3D X_T file，需要包含主要發熱零件(ME)。\n5.系統環境溫度規格與噪音規格(PM)。"
             },
             {
-                keywords: ["模擬", "需要", "什麼"],
+                keywords: ["跑simulation", "需要", "資料","什麼"],
+                // 加入 a 標籤與 css 樣式。雙斜線路徑在字串中需要使用 '\\' 來避免跳脫。
                 answer: "模擬需要資料如下，資料全部到齊確認OK後才能進行排程喔。\n1.回填廢熱表(EE/Power)，如下載連結: <a href='https://docs.google.com/spreadsheets/d/1ZNCjw0w1ElHVHm2Zcb1UZNgbpNfouEvX/edit?usp=drive_link&ouid=114028389622768722194&rtpof=true&sd=true' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>模擬廢熱表</a>\n2.廢熱表內零件datasheet(EE/Power)。\n3.廢熱表內零件位置圖(EE/Power)。\n4.系統3D X_T file，需要包含主要發熱零件(ME)。\n5.系統環境溫度規格與噪音規格(PM)。"
             },
             {
@@ -829,7 +874,7 @@
                 answer: "扣fin又稱為zipper fin，是常見的heat sink的製程，特色是可以製作gap很小fin很薄的heat sink，散熱面積大。\n扣fin製程說明連結(含影片):<a href='https://advantechrandy.github.io/Data-B009_V2.3/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>扣fin(zipper fin)製程</a>"
             },
             {
-                keywords: ["扣fin","什麼"],
+                keywords: ["扣fin","什麼是"],
                 answer: "扣fin又稱為zipper fin，是常見的heat sink的製程，特色是可以製作gap很小fin很薄的heat sink，散熱面積大。\n扣fin製程說明連結(含影片):<a href='https://advantechrandy.github.io/Data-B009_V2.3/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>扣fin(zipper fin)製程</a>"
             },
             {
@@ -837,7 +882,7 @@
                 answer: "扣fin又稱為zipper fin，是常見的heat sink的製程，特色是可以製作gap很小fin很薄的heat sink，散熱面積大。\n扣fin製程說明連結(含影片):<a href='https://advantechrandy.github.io/Data-B009_V2.3/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>扣fin(zipper fin)製程</a>"
             },
             {
-                keywords: ["zipper","什麼"],
+                keywords: ["zipper","什麼是"],
                 answer: "扣fin又稱為zipper fin，是常見的heat sink的製程，特色是可以製作gap很小fin很薄的heat sink，散熱面積大。\n扣fin製程說明連結(含影片):<a href='https://advantechrandy.github.io/Data-B009_V2.3/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>扣fin(zipper fin)製程</a>"
             },
             {
@@ -853,15 +898,15 @@
                 answer: "Skiving fin = 鏟齒 = 砍fin，三個叫法都可以，是常見的CPU cooler的製程。\nSkiving fin製程說明連結(含影片):<a href='https://advantechrandy.github.io/Data-B010_V2.1/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>Skiving fin(zipper fin)製程</a>"
             },
             {
-                keywords: ["skiving","什麼"],
+                keywords: ["skiving","什麼是"],
                 answer: "Skiving fin = 鏟齒 = 砍fin，三個叫法都可以，是常見的CPU cooler的製程。\nSkiving fin製程說明連結(含影片):<a href='https://advantechrandy.github.io/Data-B010_V2.1/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>Skiving fin(zipper fin)製程</a>"
             },
             {
-                keywords: ["鏟齒","什麼"],
+                keywords: ["鏟齒","什麼是"],
                 answer: "Skiving fin = 鏟齒 = 砍fin，三個叫法都可以，是常見的CPU cooler的製程。\nSkiving fin製程說明連結(含影片):<a href='https://advantechrandy.github.io/Data-B010_V2.1/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>Skiving fin(zipper fin)製程</a>"
             },
             {
-                keywords: ["砍fin","什麼"],
+                keywords: ["砍fin","什麼是"],
                 answer: "Skiving fin = 鏟齒 = 砍fin，三個叫法都可以，是常見的CPU cooler的製程。\nSkiving fin製程說明連結(含影片):<a href='https://advantechrandy.github.io/Data-B010_V2.1/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>Skiving fin(zipper fin)製程</a>"
             },
             {
@@ -870,14 +915,6 @@
             },
             {
                 keywords: ["unit","換算"],
-                answer: "工業用單位換算連結:\n<a href='https://advantechrandy.github.io/Tool-A010_V2.9/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>工業用單位換算</a>"
-            },
-            {
-                keywords: ["單位","轉換"],
-                answer: "工業用單位換算連結:\n<a href='https://advantechrandy.github.io/Tool-A010_V2.9/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>工業用單位換算</a>"
-            },
-            {
-                keywords: ["unit","轉換"],
                 answer: "工業用單位換算連結:\n<a href='https://advantechrandy.github.io/Tool-A010_V2.9/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>工業用單位換算</a>"
             },
             {
@@ -929,11 +966,11 @@
                 answer: "熱管性能測試相關資料連結(內含影片):\n<a href='https://advantechrandy.github.io/Data-B008_V2.2/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>熱管性能測試</a>"
             },
             {
-                keywords: ["3d vc","什麼"],
+                keywords: ["3d vc","是什麼"],
                 answer: "3D VC全名是3D Vapor Chamber，是熱管跟VC的結合，可以更有效率的把熱源的熱快速帶到鰭片。\n3D VC說明連結:<a href='https://advantechrandy.github.io/Data-B001_V2.1/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>3D VC說明</a>"
             },
-            {
-                keywords: ["3d vc","說明"],
+             {
+                keywords: ["3d vc","什麼是"],
                 answer: "3D VC全名是3D Vapor Chamber，是熱管跟VC的結合，可以更有效率的把熱源的熱快速帶到鰭片。\n3D VC說明連結:<a href='https://advantechrandy.github.io/Data-B001_V2.1/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>3D VC說明</a>"
             },
             {
@@ -941,11 +978,11 @@
                 answer: "3D VC全名是3D Vapor Chamber，是熱管跟VC的結合，可以更有效率的把熱源的熱快速帶到鰭片。\n3D VC說明連結:<a href='https://advantechrandy.github.io/Data-B001_V2.1/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>3D VC說明</a>"
             },
             {
-                keywords: ["mccp","什麼"],
+                keywords: ["mccp","是什麼"],
                 answer: "MCCP是全名微流道cold plate，指流道水非常小效率非常好的水冷板，缺點是水壓會很大。\nMCCP說明連結:<a href='https://advantechrandy.github.io/Data-B002_V2.4/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>MCCP說明介紹</a>"
             },
             {
-                keywords: ["mccp","說明"],
+                keywords: ["mccp","什麼是"],
                 answer: "MCCP是全名微流道cold plate，指流道水非常小效率非常好的水冷板，缺點是水壓會很大。\nMCCP說明連結:<a href='https://advantechrandy.github.io/Data-B002_V2.4/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>MCCP說明介紹</a>"
             },
             {
@@ -961,15 +998,7 @@
                 answer: "露點溫度濕度計算連結:\n<a href='https://advantechrandy.github.io/Tool-A018_V2.3/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>露點計算</a>"
             },
             {
-                keywords: ["露點","評估"],
-                answer: "露點溫度濕度計算連結:\n<a href='https://advantechrandy.github.io/Tool-A018_V2.3/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>露點計算</a>"
-            },
-            {
                 keywords: ["結露","溫度","計算"],
-                answer: "露點溫度濕度計算連結:\n<a href='https://advantechrandy.github.io/Tool-A018_V2.3/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>露點計算</a>"
-            },
-            {
-                keywords: ["結露","溫度","估算"],
                 answer: "露點溫度濕度計算連結:\n<a href='https://advantechrandy.github.io/Tool-A018_V2.3/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>露點計算</a>"
             },
             {
@@ -977,76 +1006,36 @@
                 answer: "露點溫度濕度計算連結:\n<a href='https://advantechrandy.github.io/Tool-A018_V2.3/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>露點計算</a>"
             },
             {
-                keywords: ["結露","濕度","估算"],
-                answer: "露點溫度濕度計算連結:\n<a href='https://advantechrandy.github.io/Tool-A018_V2.3/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>露點計算</a>"
-            },
-            {
-                keywords: ["模擬", "排程"],
+                keywords: ["模擬", "要怎麼排"],
                 answer: "模擬需要資料全部到齊後確認OK後，Thermal Team內部才能進行排程喔。\n目前thermal simulaiton五位工程師使用兩套，可能需要排隊，請洽對應thermal。"
             },
             {
-                keywords: ["噪音", "計算"],
+                keywords: ["噪音", "怎麼計算"],
                 answer: "噪音是一種複雜能量，因為環境/材質/位置/測試方式/頻率共鳴等等多樣條件不同，也因此，無法精確計算或是模擬，只能實測才有精確值。\n但有時系統開發初期確需要初步估計，沒有辦法中的辦法中，有個理想化簡易計算工具總比胡亂猜的好，以下是工具連結，如果使用上有問題，請詢問Thermal。\n<a href='https://advantechrandy.github.io/Tool-A013_V2.3/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>初步Sound Pressure噪音計算Tool</a>"
             },
             {
-                keywords: ["噪音", "估算"],
+                keywords: ["噪音", "可以計算嗎"],
                 answer: "噪音是一種複雜能量，因為環境/材質/位置/測試方式/頻率共鳴等等多樣條件不同，也因此，無法精確計算或是模擬，只能實測才有精確值。\n但有時系統開發初期確需要初步估計，沒有辦法中的辦法中，有個理想化簡易計算工具總比胡亂猜的好，以下是工具連結，如果使用上有問題，請詢問Thermal。\n<a href='https://advantechrandy.github.io/Tool-A013_V2.3/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>初步Sound Pressure噪音計算Tool</a>"
             },
             {
-                keywords: ["噪音", "評估"],
+                keywords: ["noise", "怎麼計算"],
                 answer: "噪音是一種複雜能量，因為環境/材質/位置/測試方式/頻率共鳴等等多樣條件不同，也因此，無法精確計算或是模擬，只能實測才有精確值。\n但有時系統開發初期確需要初步估計，沒有辦法中的辦法中，有個理想化簡易計算工具總比胡亂猜的好，以下是工具連結，如果使用上有問題，請詢問Thermal。\n<a href='https://advantechrandy.github.io/Tool-A013_V2.3/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>初步Sound Pressure噪音計算Tool</a>"
             },
             {
-                keywords: ["知道", "噪音"],
+                keywords: ["noise", "可以計算嗎"],
                 answer: "噪音是一種複雜能量，因為環境/材質/位置/測試方式/頻率共鳴等等多樣條件不同，也因此，無法精確計算或是模擬，只能實測才有精確值。\n但有時系統開發初期確需要初步估計，沒有辦法中的辦法中，有個理想化簡易計算工具總比胡亂猜的好，以下是工具連結，如果使用上有問題，請詢問Thermal。\n<a href='https://advantechrandy.github.io/Tool-A013_V2.3/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>初步Sound Pressure噪音計算Tool</a>"
-            },
-            {
-                keywords: ["noise", "計算"],
-                answer: "噪音是一種複雜能量，因為環境/材質/位置/測試方式/頻率共鳴等等多樣條件不同，也因此，無法精確計算或是模擬，只能實測才有精確值。\n但有時系統開發初期確需要初步估計，沒有辦法中的辦法中，有個理想化簡易計算工具總比胡亂猜的好，以下是工具連結，如果使用上有問題，請詢問Thermal。\n<a href='https://advantechrandy.github.io/Tool-A013_V2.3/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>初步Sound Pressure噪音計算Tool</a>"
-            },
-            {
-                keywords: ["noise", "估算"],
-                answer: "噪音是一種複雜能量，因為環境/材質/位置/測試方式/頻率共鳴等等多樣條件不同，也因此，無法精確計算或是模擬，只能實測才有精確值。\n但有時系統開發初期確需要初步估計，沒有辦法中的辦法中，有個理想化簡易計算工具總比胡亂猜的好，以下是工具連結，如果使用上有問題，請詢問Thermal。\n<a href='https://advantechrandy.github.io/Tool-A013_V2.3/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>初步Sound Pressure噪音計算Tool</a>"
-            },
-            {
-                keywords: ["noise", "評估"],
-                answer: "噪音是一種複雜能量，因為環境/材質/位置/測試方式/頻率共鳴等等多樣條件不同，也因此，無法精確計算或是模擬，只能實測才有精確值。\n但有時系統開發初期確需要初步估計，沒有辦法中的辦法中，有個理想化簡易計算工具總比胡亂猜的好，以下是工具連結，如果使用上有問題，請詢問Thermal。\n<a href='https://advantechrandy.github.io/Tool-A013_V2.3/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>初步Sound Pressure噪音計算Tool</a>"
-            },
-            {
-                keywords: ["知道", "noise"],
-                answer: "噪音是一種複雜能量，因為環境/材質/位置/測試方式/頻率共鳴等等多樣條件不同，也因此，無法精確計算或是模擬，只能實測才有精確值。\n但有時系統開發初期確需要初步估計，沒有辦法中的辦法中，有個理想化簡易計算工具總比胡亂猜的好，以下是工具連結，如果使用上有問題，請詢問Thermal。\n<a href='https://advantechrandy.github.io/Tool-A013_V2.3/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>初步Sound Pressure噪音計算Tool</a>"
-            },
-            {
-                keywords: ["廠商", "資料"],
-                answer: "以下為研華常用Thermal料件廠商聯絡方式連結。\n<a href='https://drive.google.com/file/d/1Ztx_rssuquMWoT_7kdCSCCpafMpbxw10/view?usp=drive_link' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>Thermal常用料廠商聯絡方式</a>"
             },
             {
                 keywords: ["廠商", "聯絡"],
                 answer: "以下為研華常用Thermal料件廠商聯絡方式連結。\n<a href='https://drive.google.com/file/d/1Ztx_rssuquMWoT_7kdCSCCpafMpbxw10/view?usp=drive_link' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>Thermal常用料廠商聯絡方式</a>"
             },
             {
-                keywords: ["smart fan control","什麼"],
+                keywords: ["smart fan control","是什麼"],
                 answer: "Smart fan control是設定溫度對應duty的table給BIOS，讓風扇可以依照溫度變化自動控制，溫度低的時後轉速低降低噪音，溫度高的時後轉速拉高保護零件，在溫度與Noise之間取的平衡點。"
             },
             {
-                keywords: ["smart fan control","解"],
+                keywords: ["smart fan control","什麼是"],
                 answer: "Smart fan control是設定溫度對應duty的table給BIOS，讓風扇可以依照溫度變化自動控制，溫度低的時後轉速低降低噪音，溫度高的時後轉速拉高保護零件，在溫度與Noise之間取的平衡點。"
-            },
-            {
-                keywords: ["smart fan control","說明"],
-                answer: "Smart fan control是設定溫度對應duty的table給BIOS，讓風扇可以依照溫度變化自動控制，溫度低的時後轉速低降低噪音，溫度高的時後轉速拉高保護零件，在溫度與Noise之間取的平衡點。"
-            },
-            {
-                keywords: ["smart fan風扇","風扇","差異"],
-                answer: "所謂的smart fan風扇，指的是有tech pin/ PWM pin的風扇，有四根pin，tech pin可以讀轉速，PWM pin可以用duty控制風扇轉速。\n如果風扇沒有smart fan功能，那麼風扇只有兩根pin，只有正負兩根電源線。"
-            },
-            {
-                keywords: ["smart fan風扇","風扇","比較"],
-                answer: "所謂的smart fan風扇，指的是有tech pin/ PWM pin的風扇，有四根pin，tech pin可以讀轉速，PWM pin可以用duty控制風扇轉速。\n如果風扇沒有smart fan功能，那麼風扇只有兩根pin，只有正負兩根電源線。"
-            },
-            {
-                keywords: ["smart fan風扇","風扇","不同"],
-                answer: "所謂的smart fan風扇，指的是有tech pin/ PWM pin的風扇，有四根pin，tech pin可以讀轉速，PWM pin可以用duty控制風扇轉速。\n如果風扇沒有smart fan功能，那麼風扇只有兩根pin，只有正負兩根電源線。"
             },
             {
                 keywords: ["smart fan風扇","一般風扇","差異"],
@@ -1073,15 +1062,11 @@
                 answer: "所謂的smart fan風扇，指的是有tech pin/ PWM pin的風扇，有四根pin，tech pin可以讀轉速，PWM pin可以用duty控制風扇轉速。\n如果風扇沒有smart fan功能，那麼風扇只有兩根pin，只有正負兩根電源線。"
             },
             {
-                keywords: ["pin define", "什麼"],
+                keywords: ["pin define", "是什麼"],
                 answer: "研華常用風扇通常是4pin風扇。\npin define由pin1~pin4常用定義如下:\n1.ground(負) 2.+(正) 3.tech(讀風扇轉速) 4.PWM(控制風扇轉速)。/n系統開發需要注意風扇的pin define與主板connector pin define是否符合。"
             },
             {
-                keywords: ["pin define", "解釋"],
-                answer: "研華常用風扇通常是4pin風扇。\npin define由pin1~pin4常用定義如下:\n1.ground(負) 2.+(正) 3.tech(讀風扇轉速) 4.PWM(控制風扇轉速)。/n系統開發需要注意風扇的pin define與主板connector pin define是否符合。"
-            },
-            {
-                keywords: ["pin define", "說明"],
+                keywords: ["pin define", "什麼是"],
                 answer: "研華常用風扇通常是4pin風扇。\npin define由pin1~pin4常用定義如下:\n1.ground(負) 2.+(正) 3.tech(讀風扇轉速) 4.PWM(控制風扇轉速)。/n系統開發需要注意風扇的pin define與主板connector pin define是否符合。"
             },
             {
@@ -1153,10 +1138,6 @@
                 answer: "因為藍迪叫Randy，他是老R，所以我是小R。"
             },
             {
-                keywords: ["為什麼","叫","小r"],
-                answer: "因為藍迪叫Randy，他是老R，所以我是小R。"
-            },
-            {
                 keywords: ["為什麼","你是","小r"],
                 answer: "因為藍迪叫Randy，他是老R，所以我是小R。"
             },
@@ -1197,23 +1178,15 @@
                 answer: "我是女生喔，年齡十歲，處女座。"
             },
             {
-                keywords: ["你是", "男生"],
-                answer: "我是女生喔，年齡十歲，處女座。"
-            },
-            {
                 keywords: ["你是", "女生嗎"],
                 answer: "對低, 我是女生，年齡十歲，處女座。"
             },
             {
-                keywords: ["你是", "女生"],
-                answer: "對低, 我是女生，年齡十歲，處女座。"
-            },
-            {
-                keywords: ["為什麼", "是女生"],
+                keywords: ["你為什麼", "是女生"],
                 answer: "因為小男生很可怕又不可愛，小女生比較可愛。"
             },
             {
-                keywords: ["為什麼", "不是男生"],
+                keywords: ["你為什麼", "不是男生"],
                 answer: "因為小男生很可怕又不可愛，小女生比較可愛。"
             },
             {
@@ -1373,11 +1346,27 @@
                 answer: "研華常用標準noise test標準是ISO7779 sound pressure test，這跟風扇datasheet/cooler datasheet一樣。"
             },
             {
-                keywords: ["如何計算", "解熱", "瓦特數"],
+                keywords: ["noise test", "測試標準"],
+                answer: "研華常用標準noise test標準是ISO7779 sound pressure test，這跟風扇datasheet/cooler datasheet一樣。"
+            },
+            {
+                keywords: ["噪音測試", "測試標準"],
+                answer: "研華常用標準noise test標準是ISO7779 sound pressure test，這跟風扇datasheet/cooler datasheet一樣。"
+            },
+            {
+                keywords: ["noise test", "測試方式"],
+                answer: "研華常用標準noise test標準是ISO7779 sound pressure test，這跟風扇datasheet/cooler datasheet一樣。"
+            },
+            {
+                keywords: ["噪音測試", "測試方式"],
+                answer: "研華常用標準noise test標準是ISO7779 sound pressure test，這跟風扇datasheet/cooler datasheet一樣。"
+            },
+            {
+                keywords: ["如何計算", "解", "幾瓦"],
                 answer: "如果環境溫度/系統架構/限制空間都固定，要計算可以解多少瓦特數，需要thermal依照經驗及參考資料，甚是模擬來評估。\n這已經是複雜評估計算，需要請對應thermal處理喔。\n我是小助手，不是來搶飯碗的喔 ^^"
             },
             {
-                keywords: ["如何計算", "溫度", "瓦特數"],
+                keywords: ["如何計算", "散", "幾瓦"],
                 answer: "如果環境溫度/系統架構/限制空間都固定，要計算可以解多少瓦特數，需要thermal依照經驗及參考資料，甚是模擬來評估。\n這已經是複雜評估計算，需要請對應thermal處理喔。\n我是小助手，不是來搶飯碗的喔 ^^"
             },
             {
@@ -1397,20 +1386,24 @@
                 answer: "均溫板有點像是平板狀的熱管，說明如連結:<a href='https://advantechrandy.github.io/Data-B004_V2.3/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>均溫板介紹</a>。"
             },
             {
-                keywords: ["熱管", "均溫板", "差異"],
+                keywords: ["熱管", "均溫板", "有什麼差異"],
                 answer: "均溫板有點像是平板狀的熱管，兩個結構幾乎一樣。\n均溫板介紹如連結:<a href='https://advantechrandy.github.io/Data-B004_V2.3/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>均溫板介紹</a>\n熱管介紹如連結:<a href='https://advantechrandy.github.io/Data-B007_V2.2//' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>熱管介紹</a>。"
             },
             {
-                keywords: ["熱管", "均溫板", "不同"],
+                keywords: ["熱管", "均溫板", "有什麼不同"],
                 answer: "均溫板有點像是平板狀的熱管，兩個結構幾乎一樣。\n均溫板介紹如連結:<a href='https://advantechrandy.github.io/Data-B004_V2.3/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>均溫板介紹</a>\n熱管介紹如連結:<a href='https://advantechrandy.github.io/Data-B007_V2.2//' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>熱管介紹</a>。"
             },
             {
-                keywords: ["機殼", "烤漆","散熱"],
+                keywords: ["機殼", "烤漆","散熱","影響"],
                 answer: "機殼烤漆會同時有正反兩種散熱影響。\n1.相較於拋光機殼，烤漆可以增加系統的輻射散熱，散熱變好。\n2.烤漆會讓機殼往外導熱的固體熱阻上升，散熱變差。\n所以要看哪一個作用比較強，通常如果是上薄漆，整體散熱效果通常會稍微變好一點，所以需要提醒機構烤漆厚度盡量不要太厚。"
             },
             {
-                keywords: ["機殼", "烤漆","溫度"],
+                keywords: ["機殼", "烤漆","溫度","影響"],
                 answer: "機殼烤漆會同時有正反兩種散熱影響。\n1.相較於拋光機殼，烤漆可以增加系統的輻射散熱，散熱變好。\n2.烤漆會讓機殼往外導熱的固體熱阻上升，散熱變差。\n所以要看哪一個作用比較強，通常如果是上薄漆，整體散熱效果通常會稍微變好一點，所以需要提醒機構烤漆厚度盡量不要太厚。"
+            },
+            {
+                keywords: ["smart fan", "怎麼運作"],
+                answer: "風扇的smart fan有四根pin，依序為ground/+/tech/PWM。\nground/+: 這兩根pin提供直流正負電源。\ntech pin: 風扇回送主板轉速訊號。\nPWM pin: 主板輸給風扇duty訊號。\n\n四根fin同時運作時，風扇轉速可以隨著控溫點自動控制。"
             },
             {
                 keywords: ["smart fan", "運作原理"],
@@ -1425,6 +1418,14 @@
                 answer: "風扇Smart fan功能可以讓轉速隨著溫度變化，可以達到低噪音節能的功能。\n如果風扇只有定速功能，那麼使用噪音會高且耗能，唯一的好處是connector比較小，主板空間可以多一點點。"
             },
             {
+                keywords: ["smart fan", "有沒有", "差異"],
+                answer: "風扇Smart fan功能可以讓轉速隨著溫度變化，可以達到低噪音節能的功能。\n如果風扇只有定速功能，那麼使用噪音會高且耗能，唯一的好處是connector比較小，主板空間可以多一點點。"
+            },
+            {
+                keywords: ["smart fan", "有沒有", "影響"],
+                answer: "風扇Smart fan功能可以讓轉速隨著溫度變化，可以達到低噪音節能的功能。\n如果風扇只有定速功能，那麼使用噪音會高且耗能，唯一的好處是connector比較小，主板空間可以多一點點。"
+            },
+            {
                 keywords: ["sound pressure", "sound power", "差異"],
                 answer: "Sound pressure跟sound power是不同的測試標準，明顯差異在於sound pressure是前後左右一公尺四支麥克風，sound power是半球型分布十支麥克風。\n因為風扇/cooler的datasheet noise測試都是sound pressure，所以強烈建議開案規格的noise規格也需要用sound pressure，才有辦法初步評估。"
             },
@@ -1433,19 +1434,19 @@
                 answer: "Sound pressure跟sound power是不同的測試標準，明顯差異在於sound pressure是前後左右一公尺四支麥克風，sound power是半球型分布十支麥克風。\n因為風扇/cooler的datasheet noise測試都是sound pressure，所以強烈建議開案規格的noise規格也需要用sound pressure，才有辦法初步評估。"
             },
             {
-                keywords: ["怎麼選", "鋁擠廠商"],
+                keywords: ["怎麼選", "鋁擠","廠商"],
                 answer: "依照研華目前狀況，鋁擠廠商挑選條件主要是兩項，一是要PVL廠商，二是要成本便宜。\n也因為這兩個條件限制，所以研華鋁擠廠商會是睿毅。"
             },
             {
-                keywords: ["怎麼挑", "鋁擠廠商"],
+                keywords: ["怎麼挑", "鋁擠","廠商"],
                 answer: "依照研華目前狀況，鋁擠廠商挑選條件主要是兩項，一是要PVL廠商，二是要成本便宜。\n也因為這兩個條件限制，所以研華鋁擠廠商會是睿毅。"
             },
             {
-                keywords: ["如何選", "鋁擠廠商"],
+                keywords: ["如何選", "鋁擠","廠商"],
                 answer: "依照研華目前狀況，鋁擠廠商挑選條件主要是兩項，一是要PVL廠商，二是要成本便宜。\n也因為這兩個條件限制，所以研華鋁擠廠商會是睿毅。"
             },
             {
-                keywords: ["如何挑", "鋁擠廠商"],
+                keywords: ["如何挑", "鋁擠","廠商"],
                 answer: "依照研華目前狀況，鋁擠廠商挑選條件主要是兩項，一是要PVL廠商，二是要成本便宜。\n也因為這兩個條件限制，所以研華鋁擠廠商會是睿毅。"
             },
             {
@@ -1473,11 +1474,11 @@
                 answer: "Reliability test是QA全部測試的名稱，裡面包含震落/落摔/IP/溫度等等測試。"
             },
             {
-                keywords: ["ir", "什麼"],
+                keywords: ["ir", "是什麼"],
                 answer: "IR是紅外線影像拍攝，影像中可以初步判斷系統主版零件溫度。\n但這有限制性，IR攝影中通常內定設定表面輻射率為0.9，但零件或是結構件不一定是表面輻射率0.9，所以溫度顯示會有誤差。\n如果要精確拍攝溫度，需要準備一台確定不需要的系統，整個系統噴薄薄黑漆去拍攝。\n研華不會做這樣拍攝，PSU廠會選擇性做這拍攝。"
             },
             {
-                keywords: ["ir", "啥"],
+                keywords: ["ir", "什麼是"],
                 answer: "IR是紅外線影像拍攝，影像中可以初步判斷系統主版零件溫度。\n但這有限制性，IR攝影中通常內定設定表面輻射率為0.9，但零件或是結構件不一定是表面輻射率0.9，所以溫度顯示會有誤差。\n如果要精確拍攝溫度，需要準備一台確定不需要的系統，整個系統噴薄薄黑漆去拍攝。\n研華不會做這樣拍攝，PSU廠會選擇性做這拍攝。"
             },
             {
@@ -1505,27 +1506,27 @@
                 answer: "我十歲，性別女，星座是處女座，喜歡各種小動物。\n另外說一下，我的年齡就是藍迪的心智年齡。"
             },
             {
-                keywords: ["你", "男生女生"],
+                keywords: ["你", "是男生女生"],
                 answer: "我十歲，性別女，星座是處女座，喜歡各種小動物。\n另外說一下，我的年齡就是藍迪的心智年齡。"
             },
             {
-                keywords: ["m.2", "需要", "幾度"],
+                keywords: ["m.2","規格","需要","幾度"],
                 answer: "M.2 SSD溫度規格有一個可能會誤解的地方，它的規格通常是T-case規格，不是T-ambient規格，嚴苛很多，這部分需要看一下datasheet。\n一般來說，環境溫度高於60度或是瓦特數高於1.5W，差不多需要選到85度SKU。\n通常系統環溫40度以下，且有系統風扇，才有機會用到70度SKU。"
             },
             {
-                keywords: ["nvme", "需要", "幾度"],
+                keywords: ["nvme","規格","需要", "幾度"],
                 answer: "NVME溫度規格有一個可能會誤解的地方，它的規格通常是T-case規格，不是T-ambient規格，嚴苛很多，這部分需要看一下datasheet。\n一般來說，環境溫度高於60度或是瓦特數高於1.5W，差不多需要選到85度SKU。\n通常系統環溫40度以下，且有系統風扇，才有機會用到70度SKU。"
             },
             {
-                keywords: ["m.2", "選", "幾度"],
+                keywords: ["m.2","規格", "選", "幾度"],
                 answer: "M.2 SSD溫度規格有一個可能會誤解的地方，它的規格通常是T-case規格，不是T-ambient規格，嚴苛很多，這部分需要看一下datasheet。\n一般來說，環境溫度高於60度或是瓦特數高於1.5W，差不多需要選到85度SKU。\n通常系統環溫40度以下，且有系統風扇，才有機會用到70度SKU。"
             },
             {
-                keywords: ["nvme", "選", "幾度"],
+                keywords: ["nvme","規格", "選", "幾度"],
                 answer: "NVME溫度規格有一個可能會誤解的地方，它的規格通常是T-case規格，不是T-ambient規格，嚴苛很多，這部分需要看一下datasheet。\n一般來說，環境溫度高於60度或是瓦特數高於1.5W，差不多需要選到85度SKU。\n通常系統環溫40度以下，且有系統風扇，才有機會用到70度SKU。"
             },
             {
-                keywords: ["tdp", "什麼"],
+                keywords: ["tdp", "是什麼"],
                 answer: "TDP全名thermal design power，零件溫度設計瓦特數，是給thermal參考的廢熱設計值。\n有些零件datasheet上面會特別標示，譬如CPU/GPU。"
             },
             {
@@ -1533,7 +1534,7 @@
                 answer: "TDP全名thermal design power，零件溫度設計瓦特數，是給thermal參考的廢熱設計值。\n有些零件datasheet上面會特別標示，譬如CPU/GPU。"
             },
             {
-                keywords: ["tdp", "解釋"],
+                keywords: ["tdp", "什麼是"],
                 answer: "TDP全名thermal design power，零件溫度設計瓦特數，是給thermal參考的廢熱設計值。\n有些零件datasheet上面會特別標示，譬如CPU/GPU。"
             },
             {
@@ -1649,7 +1650,7 @@
                 answer: "以研華實際狀況，挑選thermal pad需要考慮以下條件。\n1.對應零件的發熱瓦特數，需要配合對應導熱係數的themral pad，如果是CPU，通常需要用到導熱係數K值8W/mK以上。\n2.零件與散熱件的gap有多少，會配對應厚度的thermal pad，通常會抓thermal pad壓縮量約30%，另外需要注意，thermal pad越薄，散熱效率越好。\n3.研華內部規定thermal料件優先由KCC List裡面挑選，成本比較低，備料風險比較低。"
             },
             {
-                keywords: ["k值", "什麼"],
+                keywords: ["k值", "是什麼"],
                 answer: "我們說的K值，指物質的導熱係數，單位是W/mK。\n銅的K值約380，鋁擠材料的K值約180。\nK值越高越好，代表散熱效果越好。"
             },
             {
@@ -1657,11 +1658,11 @@
                 answer: "我們說的K值，指物質的導熱係數，單位是W/mK。\n銅的K值約380，鋁擠材料的K值約180。\nK值越高越好，代表散熱效果越好。"
             },
             {
-                keywords: ["k值", "解釋"],
+                keywords: ["k值", "什麼是"],
                 answer: "我們說的K值，指物質的導熱係數，單位是W/mK。\n銅的K值約380，鋁擠材料的K值約180。\nK值越高越好，代表散熱效果越好。"
             },
             {
-                keywords: ["導熱係數", "什麼"],
+                keywords: ["導熱係數", "是什麼"],
                 answer: "導熱係數對應物質的熱傳導的速度，越高散熱越好，單位是W/mK，我們通常直接叫它[K值]。\n銅的導熱係數約380，鋁擠材料的導熱係數約180。"
             },
             {
@@ -1669,11 +1670,11 @@
                 answer: "導熱係數對應物質的熱傳導的速度，越高散熱越好，單位是W/mK，我們通常直接叫它[K值]。\n銅的導熱係數約380，鋁擠材料的導熱係數約180。"
             },
             {
-                keywords: ["導熱係數", "解釋"],
+                keywords: ["導熱係數", "什麼是"],
                 answer: "導熱係數對應物質的熱傳導的速度，越高散熱越好，單位是W/mK，我們通常直接叫它[K值]。\n銅的導熱係數約380，鋁擠材料的導熱係數約180。"
             },
             {
-                keywords: ["石墨片", "什麼"],
+                keywords: ["石墨片", "是什麼"],
                 answer: "實務上，石墨片通常用來均溫，把熱源高溫均勻擴散。\n石墨片分為兩種:1.人造石墨片 2.天然石墨片。\n跟食物一樣，依照研華開發實務狀況，通常會用天然石墨片，因為它厚度約0.3mm，平面熱通量比較高，均溫效果比較好。\n而人造石墨片很薄，不到0.1mm，平面熱通量小，均溫效果不好。"
             },
             {
@@ -1681,15 +1682,15 @@
                 answer: "實務上，石墨片通常用來均溫，把熱源高溫均勻擴散。\n石墨片分為兩種:1.人造石墨片 2.天然石墨片。\n跟食物一樣，依照研華開發實務狀況，通常會用天然石墨片，因為它厚度約0.3mm，平面熱通量比較高，均溫效果比較好。\n而人造石墨片很薄，不到0.1mm，平面熱通量小，均溫效果不好。"
             },
             {
-                keywords: ["石墨片", "解釋"],
+                keywords: ["石墨片", "什麼是"],
                 answer: "實務上，石墨片通常用來均溫，把熱源高溫均勻擴散。\n石墨片分為兩種:1.人造石墨片 2.天然石墨片。\n跟食物一樣，依照研華開發實務狀況，通常會用天然石墨片，因為它厚度約0.3mm，平面熱通量比較高，均溫效果比較好。\n而人造石墨片很薄，不到0.1mm，平面熱通量小，均溫效果不好。"
             },
             {
-                keywords: ["graphite pad", "解釋"],
+                keywords: ["graphite pad", "是什麼"],
                 answer: "實務上，石墨片通常用來均溫，把熱源高溫均勻擴散。\n石墨片分為兩種:1.人造石墨片 2.天然石墨片。\n跟食物一樣，依照研華開發實務狀況，通常會用天然石墨片，因為它厚度約0.3mm，平面熱通量比較高，均溫效果比較好。\n而人造石墨片很薄，不到0.1mm，平面熱通量小，均溫效果不好。"
             },
             {
-                keywords: ["graphite pad", "什麼"],
+                keywords: ["graphite pad", "什麼是"],
                 answer: "實務上，石墨片通常用來均溫，把熱源高溫均勻擴散。\n石墨片分為兩種:1.人造石墨片 2.天然石墨片。\n跟食物一樣，依照研華開發實務狀況，通常會用天然石墨片，因為它厚度約0.3mm，平面熱通量比較高，均溫效果比較好。\n而人造石墨片很薄，不到0.1mm，平面熱通量小，均溫效果不好。"
             },
             {
@@ -1697,15 +1698,11 @@
                 answer: "實務上，石墨片通常用來均溫，把熱源高溫均勻擴散。\n石墨片分為兩種:1.人造石墨片 2.天然石墨片。\n跟食物一樣，依照研華開發實務狀況，通常會用天然石墨片，因為它厚度約0.3mm，平面熱通量比較高，均溫效果比較好。\n而人造石墨片很薄，不到0.1mm，平面熱通量小，均溫效果不好。"
             },
             {
-                keywords: ["graphite sheet", "解釋"],
+                keywords: ["graphite sheet", "什麼是"],
                 answer: "實務上，石墨片通常用來均溫，把熱源高溫均勻擴散。\n石墨片分為兩種:1.人造石墨片 2.天然石墨片。\n跟食物一樣，依照研華開發實務狀況，通常會用天然石墨片，因為它厚度約0.3mm，平面熱通量比較高，均溫效果比較好。\n而人造石墨片很薄，不到0.1mm，平面熱通量小，均溫效果不好。"
             },
             {
-                keywords: ["graphite sheet", "什麼"],
-                answer: "實務上，石墨片通常用來均溫，把熱源高溫均勻擴散。\n石墨片分為兩種:1.人造石墨片 2.天然石墨片。\n跟食物一樣，依照研華開發實務狀況，通常會用天然石墨片，因為它厚度約0.3mm，平面熱通量比較高，均溫效果比較好。\n而人造石墨片很薄，不到0.1mm，平面熱通量小，均溫效果不好。"
-            },
-            {
-                keywords: ["graphite sheet", "說明"],
+                keywords: ["graphite sheet", "是什麼"],
                 answer: "實務上，石墨片通常用來均溫，把熱源高溫均勻擴散。\n石墨片分為兩種:1.人造石墨片 2.天然石墨片。\n跟食物一樣，依照研華開發實務狀況，通常會用天然石墨片，因為它厚度約0.3mm，平面熱通量比較高，均溫效果比較好。\n而人造石墨片很薄，不到0.1mm，平面熱通量小，均溫效果不好。"
             },
             {
@@ -1713,43 +1710,55 @@
                 answer: "我們常用PVL thermal pad廠商為翰興及高柏。\nThermal pad交期一般為3~5天。"
             },
             {
-                keywords: ["廢熱", "計算"],
+                keywords: ["廢熱", "怎麼計算"],
                 answer: "這問題可能需要詢問EE/Power弟兄，這是他們的專業，但我可以大略簡介一下。\n如果是power零件，廢熱(消耗瓦特數) = 輸入瓦特數-輸出瓦特數。\n如果是一般零件，那麼EE通常是直接用datasheet上面的peak數值計算，但通常會超過實際狀況，變成over design，如果buffer要多抓一點，這也是可以。\n如果要比較準確的零件廢熱，通常要用量測方式，最省事方法是請廠商提供實測瓦特數。"
             },
             {
-                keywords: ["廢熱", "估算"],
+                keywords: ["廢熱", "如何計算"],
                 answer: "這問題可能需要詢問EE/Power弟兄，這是他們的專業，但我可以大略簡介一下。\n如果是power零件，廢熱(消耗瓦特數) = 輸入瓦特數-輸出瓦特數。\n如果是一般零件，那麼EE通常是直接用datasheet上面的peak數值計算，但通常會超過實際狀況，變成over design，如果buffer要多抓一點，這也是可以。\n如果要比較準確的零件廢熱，通常要用量測方式，最省事方法是請廠商提供實測瓦特數。"
             },
             {
-                keywords: ["廢熱", "評估"],
-                answer: "這問題可能需要詢問EE/Power弟兄，這是他們的專業，但我可以大略簡介一下。\n如果是power零件，廢熱(消耗瓦特數) = 輸入瓦特數-輸出瓦特數。\n如果是一般零件，那麼EE通常是直接用datasheet上面的peak數值計算，但通常會超過實際狀況，變成over design，如果buffer要多抓一點，這也是可以。\n如果要比較準確的零件廢熱，通常要用量測方式，最省事方法是請廠商提供實測瓦特數。"
-            },
-            {
-                keywords: ["tc", "什麼"],
+                keywords: ["tc", "是什麼"],
                 answer: "tc通常說的是case temperature，指零件表面溫度。"
             },
             {
-                keywords: ["散熱片", "用處"],
+                keywords: ["tc", "什麼是"],
+                answer: "tc通常說的是case temperature，指零件表面溫度。"
+            },
+            {
+                keywords: ["散熱片", "是什麼"],
                 answer: "在微觀中，零件與heat sink的平整度不是完美平面，所以需要軟性導熱介質填充，盡量不要有空氣夾在中間，空氣是一種絕熱物質。\n另外，thermal pad有緩衝效果，避免零件與heat sink在震動落摔時，硬碰硬損壞。"
             },
             {
-                keywords: ["thermal pad", "用處"],
+                keywords: ["散熱片", "用在哪"],
                 answer: "在微觀中，零件與heat sink的平整度不是完美平面，所以需要軟性導熱介質填充，盡量不要有空氣夾在中間，空氣是一種絕熱物質。\n另外，thermal pad有緩衝效果，避免零件與heat sink在震動落摔時，硬碰硬損壞。"
             },
             {
-                keywords: ["散熱膏", "用處"],
+                keywords: ["thermal pad", "什麼是"],
+                answer: "在微觀中，零件與heat sink的平整度不是完美平面，所以需要軟性導熱介質填充，盡量不要有空氣夾在中間，空氣是一種絕熱物質。\n另外，thermal pad有緩衝效果，避免零件與heat sink在震動落摔時，硬碰硬損壞。"
+            },
+            {
+                keywords: ["散熱膏", "是什麼"],
                 answer: "散熱膏通常用在比較高瓦特數零件上，譬如CPU。\n相較於thermal pad，它的介面熱阻小很多，因為可以壓到很薄，零件更好散熱。"
             },
             {
-                keywords: ["grease", "用處"],
+                keywords: ["thermal grease", "什麼是"],
                 answer: "散熱膏通常用在比較高瓦特數零件上，譬如CPU。\n相較於thermal pad，它的介面熱阻小很多，因為可以壓到很薄，零件更好散熱。"
             },
             {
-                keywords: ["散熱膏", "好處"],
-                answer: "散熱膏通常用在比較高瓦特數零件上，譬如CPU。\n相較於thermal pad，它的介面熱阻小很多，因為可以壓到很薄，零件更好散熱。"
+                keywords: ["thermal gel", "什麼是"],
+                answer: "Thermal gel通常用在同時需要接觸多個零件的heat sink，減少每個零件往上頂的不均衡力量，讓heat sink歪一邊造成燥熱不好。\n研華常用的thermal gel有Gel30/Tga6060。"
             },
             {
-                keywords: ["grease", "好處"],
+                keywords: ["thermal gel", "是什麼"],
+                answer: "Thermal gel通常用在同時需要接觸多個零件的heat sink，減少每個零件往上頂的不均衡力量，讓heat sink歪一邊造成燥熱不好。\n研華常用的thermal gel有Gel30/Tga6060。"
+            },
+            {
+                keywords: ["thermal gel", "有什麼好處"],
+                answer: "Thermal gel通常用在同時需要接觸多個零件的heat sink，減少每個零件往上頂的不均衡力量，讓heat sink歪一邊造成燥熱不好。\n研華常用的thermal gel有Gel30/Tga6060。"
+            },
+            {
+                keywords: ["grease", "有什麼好處"],
                 answer: "散熱膏通常用在比較高瓦特數零件上，譬如CPU。\n相較於thermal pad，它的介面熱阻小很多，因為可以壓到很薄，零件更好散熱。"
             },
             {
@@ -1757,27 +1766,39 @@
                 answer: "華氏溫度= 1.8x攝氏溫度 +32。"
             },
             {
-                keywords: ["華氏", "攝氏","不同"],
+                keywords: ["華氏", "攝氏","有什麼不同"],
                 answer: "華氏溫度= 1.8x攝氏溫度 +32。"
             },
             {
-                keywords: ["db", "什麼"],
+                keywords: ["db值", "是什麼"],
                 answer: "dB是噪音測試結果的單位，研華一般噪音測試是sound pressure test，單位為dB(A)，這個A是指依照人耳聽到的頻率範圍去加權指數計算。"
             },
             {
-                keywords: ["dba", "什麼"],
+                keywords: ["db值", "什麼是"],
                 answer: "dB是噪音測試結果的單位，研華一般噪音測試是sound pressure test，單位為dB(A)，這個A是指依照人耳聽到的頻率範圍去加權指數計算。"
             },
             {
-                keywords: ["tj", "什麼"],
+                keywords: ["dba", "是什麼"],
+                answer: "dB是噪音測試結果的單位，研華一般噪音測試是sound pressure test，單位為dB(A)，這個A是指依照人耳聽到的頻率範圍去加權指數計算。"
+            },
+            {
+                keywords: ["dba", "什麼是"],
+                answer: "dB是噪音測試結果的單位，研華一般噪音測試是sound pressure test，單位為dB(A)，這個A是指依照人耳聽到的頻率範圍去加權指數計算。"
+            },
+            {
+                keywords: ["tj", "是什麼"],
                 answer: "tcj通常說的是junction temperature，指零件內部最高溫度die的溫度。"
             },
             {
-                keywords: ["heat sink", "材質"],
+                keywords: ["tj", "什麼是"],
+                answer: "tcj通常說的是junction temperature，指零件內部最高溫度die的溫度。"
+            },
+            {
+                keywords: ["heat sink", "材質","有哪些"],
                 answer: "heat sink常見材質有三個。\n1.銅，導熱係數約380W/mK，最好但比較貴。\n2.AL6061/6063，鋁擠材料，導熱係數約180W/mK。\n3.ADC12，鋁壓鑄材料，導熱係數約80W/mK，導熱最差。"
             },
             {
-                keywords: ["heat sink", "材料"],
+                keywords: ["heat sink", "材料","有哪些"],
                 answer: "heat sink常見材質有三個。\n1.銅，導熱係數約380W/mK，最好但比較貴。\n2.AL6061/6063，鋁擠材料，導熱係數約180W/mK。\n3.ADC12，鋁壓鑄材料，導熱係數約80W/mK，導熱最差。"
             },
             {
@@ -1785,7 +1806,11 @@
                 answer: "heat sink常見材質有三個。\n1.銅，導熱係數約380W/mK，最好但比較貴。\n2.AL6061/6063，鋁擠材料，導熱係數約180W/mK。\n3.ADC12，鋁壓鑄材料，導熱係數約80W/mK，導熱最差。"
             },
             {
-                keywords: ["ta", "什麼"],
+                keywords: ["ta", "是什麼"],
+                answer: "ta通常說的是ambient temperature，指零件上方10mm的空氣溫度(QA的測試定義)。"
+            },
+            {
+                keywords: ["ta", "什麼是"],
                 answer: "ta通常說的是ambient temperature，指零件上方10mm的空氣溫度(QA的測試定義)。"
             },
             {
@@ -1793,11 +1818,23 @@
                 answer: "這通常要看系統瓦特數/CPU瓦特數/有沒有帶風扇。\n如果是fanless系統，15W CPU的環境溫度通常會是環境溫度70度以下，CPU瓦特數越大，對應的環境溫度需要逐步下降。\n如果是帶風扇系統，CPU瓦特數通常也會高許多，通常是60W以上，系統環境溫度通常是60度以下，這要看空間/noise限制/成本。\n細部分析可能需要問一下Thermal，會有比較清楚評估喔。"
             },
             {
-                keywords: ["系統", "常見環境溫度"],
+                keywords: ["工規", "環溫"],
+                answer: "這通常要看系統瓦特數/CPU瓦特數/有沒有帶風扇。\n如果是fanless系統，15W CPU的環境溫度通常會是環境溫度70度以下，CPU瓦特數越大，對應的環境溫度需要逐步下降。\n如果是帶風扇系統，CPU瓦特數通常也會高許多，通常是60W以上，系統環境溫度通常是60度以下，這要看空間/noise限制/成本。\n細部分析可能需要問一下Thermal，會有比較清楚評估喔。"
+            },
+            {
+                keywords: ["系統","常見","環溫"],
                 answer: "這通常要看系統瓦特數/CPU瓦特數/有沒有帶風扇，會有對應適合環境溫度。\n如果是fanless系統，15W CPU的環境溫度通常會是環境溫度70度以下，CPU瓦特數越大，對應的環境溫度需要逐步下降。\n如果是帶風扇系統，CPU瓦特數通常也會高許多，通常是60W以上，系統環境溫度通常是60度以下，這要看空間/noise限制/成本。\n細部分析可能需要問一下Thermal，會有比較清楚評估喔。"
             },
             {
-                keywords: ["系統", "環境溫度"],
+                keywords: ["系統","常見","環境溫度"],
+                answer: "這通常要看系統瓦特數/CPU瓦特數/有沒有帶風扇，會有對應適合環境溫度。\n如果是fanless系統，15W CPU的環境溫度通常會是環境溫度70度以下，CPU瓦特數越大，對應的環境溫度需要逐步下降。\n如果是帶風扇系統，CPU瓦特數通常也會高許多，通常是60W以上，系統環境溫度通常是60度以下，這要看空間/noise限制/成本。\n細部分析可能需要問一下Thermal，會有比較清楚評估喔。"
+            },
+            {
+                keywords: ["系統","一般","環溫"],
+                answer: "這通常要看系統瓦特數/CPU瓦特數/有沒有帶風扇，會有對應適合環境溫度。\n如果是fanless系統，15W CPU的環境溫度通常會是環境溫度70度以下，CPU瓦特數越大，對應的環境溫度需要逐步下降。\n如果是帶風扇系統，CPU瓦特數通常也會高許多，通常是60W以上，系統環境溫度通常是60度以下，這要看空間/noise限制/成本。\n細部分析可能需要問一下Thermal，會有比較清楚評估喔。"
+            },
+            {
+                keywords: ["系統","一般","環境溫度"],
                 answer: "這通常要看系統瓦特數/CPU瓦特數/有沒有帶風扇，會有對應適合環境溫度。\n如果是fanless系統，15W CPU的環境溫度通常會是環境溫度70度以下，CPU瓦特數越大，對應的環境溫度需要逐步下降。\n如果是帶風扇系統，CPU瓦特數通常也會高許多，通常是60W以上，系統環境溫度通常是60度以下，這要看空間/noise限制/成本。\n細部分析可能需要問一下Thermal，會有比較清楚評估喔。"
             },
             {
@@ -1805,35 +1842,47 @@
                 answer: "fanless系統常用散熱方式:\n1.直接加裝heat sink，不導熱到上蓋，這需要比較大的散熱面積，優點是外殼比較不會燙。\n2.直接導熱到外殼，這會比較好一點，但也需要一定散熱面積，缺點是外殼會燙需要注意安規溫度。"
             },
             {
-                keywords: ["fanless", "散熱"],
+                keywords: ["fanless", "怎麼散熱"],
                 answer: "fanless系統常用散熱方式:\n1.直接加裝heat sink，不導熱到上蓋，這需要比較大的散熱面積，優點是外殼比較不會燙。\n2.直接導熱到外殼，這會比較好一點，但也需要一定散熱面積，缺點是外殼會燙需要注意安規溫度。"
             },
             {
-                keywords: ["tj", "tc", "ta"],
+                keywords: ["tj", "tc", "ta","差異"],
                 answer: "Tj(junction temperature):零件內部die的溫度。\nTc(case temperature):零件表面溫度。\nTa(ambient temperature):零件上方10mm的空氣溫度(QA的定義)。"
             },
             {
-                keywords: ["降頻", "什麼"],
+                keywords: ["tj", "tc", "ta","不同"],
+                answer: "Tj(junction temperature):零件內部die的溫度。\nTc(case temperature):零件表面溫度。\nTa(ambient temperature):零件上方10mm的空氣溫度(QA的定義)。"
+            },
+            {
+                keywords: ["降頻", "是什麼"],
                 answer: "降頻為零件內部的硬體設定，達到一定溫度時，零件瓦特數頻率會開始降低，避免零件損壞。\n降頻並不會當機，只是瓦特數頻率變低，效能變比較差。"
             },
             {
-                keywords: ["throttl", "什麼"],
+                keywords: ["降頻", "什麼是"],
                 answer: "降頻為零件內部的硬體設定，達到一定溫度時，零件瓦特數頻率會開始降低，避免零件損壞。\n降頻並不會當機，只是瓦特數頻率變低，效能變比較差。"
             },
             {
-                keywords: ["CPU", "熱當"],
+                keywords: ["throttl", "是什麼"],
+                answer: "降頻為零件內部的硬體設定，達到一定溫度時，零件瓦特數頻率會開始降低，避免零件損壞。\n降頻並不會當機，只是瓦特數頻率變低，效能變比較差。"
+            },
+            {
+                keywords: ["throttl", "什麼是"],
+                answer: "降頻為零件內部的硬體設定，達到一定溫度時，零件瓦特數頻率會開始降低，避免零件損壞。\n降頻並不會當機，只是瓦特數頻率變低，效能變比較差。"
+            },
+            {
+                keywords: ["CPU", "熱當","什麼"],
                 answer: "零件硬體設定裡，有些會有shutdown溫度點設定，尤其是CPU/GPU。\n到達這溫度點時，零件電源會馬上關掉。"
             },
             {
-                keywords: ["零件", "熱當"],
+                keywords: ["系統","熱當","什麼"],
                 answer: "零件硬體設定裡，有些會有shutdown溫度點設定，尤其是CPU/GPU。\n到達這溫度點時，零件電源會馬上關掉。"
             },
             {
-                keywords: ["CPU", "shutdown"],
+                keywords: ["CPU", "shutdown","什麼"],
                 answer: "零件硬體設定裡，有些會有shutdown溫度點設定，尤其是CPU/GPU。\n到達這溫度點時，零件電源會馬上關掉。"
             },
             {
-                keywords: ["零件", "shutdown"],
+                keywords: ["系統", "shutdown","什麼"],
                 answer: "零件硬體設定裡，有些會有shutdown溫度點設定，尤其是CPU/GPU。\n到達這溫度點時，零件電源會馬上關掉。"
             },
             {
@@ -1841,7 +1890,7 @@
                 answer: "零件硬體設定裡，有些會有shutdown溫度點設定，尤其是CPU/GPU。\n到達這溫度點時，零件電源會馬上關掉。"
             },
             {
-                keywords: ["零件", "shut down"],
+                keywords: ["系統", "shut down"],
                 answer: "零件硬體設定裡，有些會有shutdown溫度點設定，尤其是CPU/GPU。\n到達這溫度點時，零件電源會馬上關掉。"
             },
             {
@@ -1861,27 +1910,31 @@
                 answer: "我們常用PVL cooler廠商為CM及睿毅。\nCooler料件中包含風扇，而風扇目前會是交期最久的料件，所以cooler如果沒有庫存，那麼交期會是八週以上。"
             },
             {
-                keywords: ["噪音", "方式"],
+                keywords: ["噪音","測試","方式"],
                 answer: "噪音測試方式分Sound Pressure(研華常用方式)/Sound Power/Sound Quality。\n因為系統風扇廠商統一噪音測試方式為Sound Pressure，所以強烈建議系統規格也用Sound Pressure，這樣才能初步計算。\n系統Sound Pressure測試規範為ISO7779:2018"
             },
             {
-                keywords: ["噪音", "什麼"],
+                keywords: ["噪音","測試","什麼"],
                 answer: "噪音測試方式分Sound Pressure(研華常用方式)/Sound Power/Sound Quality。\n因為系統風扇廠商統一噪音測試方式為Sound Pressure，所以強烈建議系統規格也用Sound Pressure，這樣才能初步計算。\n系統Sound Pressure測試規範為ISO7779:2018"
             },
             {
-                keywords: ["噪音", "說明"],
+                keywords: ["噪音","測試","說明"],
                 answer: "噪音測試方式分Sound Pressure(研華常用方式)/Sound Power/Sound Quality。\n因為系統風扇廠商統一噪音測試方式為Sound Pressure，所以強烈建議系統規格也用Sound Pressure，這樣才能初步計算。\n系統Sound Pressure測試規範為ISO7779:2018"
             },
             {
-                keywords: ["噪音", "型式"],
+                keywords: ["噪音","測試","型式"],
                 answer: "噪音測試方式分Sound Pressure(研華常用方式)/Sound Power/Sound Quality。\n因為系統風扇廠商統一噪音測試方式為Sound Pressure，所以強烈建議系統規格也用Sound Pressure，這樣才能初步計算。\n系統Sound Pressure測試規範為ISO7779:2018"
             },
             {
-                keywords: ["噪音", "那些"],
+                keywords: ["噪音","測試","那些"],
                 answer: "噪音測試方式分Sound Pressure(研華常用方式)/Sound Power/Sound Quality。\n因為系統風扇廠商統一噪音測試方式為Sound Pressure，所以強烈建議系統規格也用Sound Pressure，這樣才能初步計算。\n系統Sound Pressure測試規範為ISO7779:2018"
             },
             {
-                keywords: ["鋁", "銅","比較"],
+                keywords: ["鋁", "銅","比較","導熱"],
+                answer: "銅的導熱係數為390W/mK，常用鋁擠料鋁6061導熱係數為180W/mK，銅的導熱速度約為鋁6061的兩倍。"
+            },
+            {
+                keywords: ["鋁", "銅","比較","散熱"],
                 answer: "銅的導熱係數為390W/mK，常用鋁擠料鋁6061導熱係數為180W/mK，銅的導熱速度約為鋁6061的兩倍。"
             },
             {
@@ -1893,43 +1946,39 @@
                 answer: "木頭的導熱係數約為0.2W/mK，約為鋁的千分之一導熱速度，是很好的絕熱材料，是很差的導熱材料。"
             },
             {
-                keywords: ["鋁擠", "銅"],
+                keywords: ["鋁擠","銅","差異"],
                 answer: "銅的導熱係數為390W/mK，常用鋁擠料鋁6061導熱係數為180W/mK，銅的導熱速度約為鋁6061的兩倍。"
             },
             {
-                keywords: ["bga cpu","解熱"],
+                keywords: ["鋁擠","銅","不同"],
+                answer: "銅的導熱係數為390W/mK，常用鋁擠料鋁6061導熱係數為180W/mK，銅的導熱速度約為鋁6061的兩倍。"
+            },
+            {
+                keywords: ["bga cpu","解熱","方式"],
                 answer: "BGA CPU解熱有兩種方式。\n如果是fanless SKU，一般是安裝heat sink或是直接接觸外殼。\n如果是fan SKU，一般是加裝mobile CPU cooler。"
             },
             {
-                keywords: ["bga cpu","散熱"],
+                keywords: ["bga cpu","散熱","方式"],
                 answer: "BGA CPU解熱有兩種方式。\n如果是fanless SKU，一般是安裝heat sink或是直接接觸外殼。\n如果是fan SKU，一般是加裝mobile CPU cooler。"
             },
             {
-                keywords: ["fanless cpu","解熱"],
+                keywords: ["fanless cpu","解熱","方式"],
                 answer: "Fanless CPU解熱有兩種方式。\n一般是安裝heat sink或是直接接觸外殼。\n設計重點是需要有足夠的自然散熱面積與低熱阻抗。"
             },
             {
-                keywords: ["fanless cpu","散熱"],
+                keywords: ["fanless cpu","散熱","方式"],
                 answer: "Fanless CPU解熱有兩種方式。\n一般是安裝heat sink或是直接接觸外殼。\n設計重點是需要有足夠的自然散熱面積與低熱阻抗。"
             },
             {
-                keywords: ["模擬","時間"],
+                keywords: ["跑模擬","幾天"],
                 answer: "Thermal simulation需要3~4個工作天，看系統複雜度及當下工作狀況。\n目前模擬軟體是五個人用兩套，需要排隊使用，所以時間會比較久，請詢問Thermal目前可能時間。"
             },
             {
-                keywords: ["模擬","時程"],
+                keywords: ["跑模擬","多久"],
                 answer: "Thermal simulation需要3~4個工作天，看系統複雜度及當下工作狀況。\n目前模擬軟體是五個人用兩套，需要排隊使用，所以時間會比較久，請詢問Thermal目前可能時間。"
             },
             {
-                keywords: ["simulation","時間"],
-                answer: "Thermal simulation需要3~4個工作天，看系統複雜度及當下工作狀況。\n目前模擬軟體是五個人用兩套，需要排隊使用，所以時間會比較久，請詢問Thermal目前可能時間。"
-            },
-            {
-                keywords: ["simulation","時程"],
-                answer: "Thermal simulation需要3~4個工作天，看系統複雜度及當下工作狀況。\n目前模擬軟體是五個人用兩套，需要排隊使用，所以時間會比較久，請詢問Thermal目前可能時間。"
-            },
-            {
-                keywords: ["模擬","多久"],
+                keywords: ["simulation","幾天"],
                 answer: "Thermal simulation需要3~4個工作天，看系統複雜度及當下工作狀況。\n目前模擬軟體是五個人用兩套，需要排隊使用，所以時間會比較久，請詢問Thermal目前可能時間。"
             },
             {
@@ -1937,11 +1986,11 @@
                 answer: "Thermal simulation需要3~4個工作天，看系統複雜度及當下工作狀況。\n目前模擬軟體是五個人用兩套，需要排隊使用，所以時間會比較久，請詢問Thermal目前可能時間。"
             },
             {
-                keywords: ["theraml","組織"],
+                keywords: ["theraml","有幾個人"],
                 answer: "目前ACG theraml team如下:\n#thermal leader:William Yeh\n#thermal工程:Randy Chen\nthermal人數很少，但對應PM很多，所以會議只能挑重要或急需thermal的會議參加，如果有需要可teams通知thermal臨時參加，如有不便請多多包涵，謝謝拉。"
             },
             {
-                keywords: ["theraml","人員"],
+                keywords: ["theraml","組織"],
                 answer: "目前ACG theraml team如下:\n#thermal leader:William Yeh\n#thermal工程:Randy Chen\nthermal人數很少，但對應PM很多，所以會議只能挑重要或急需thermal的會議參加，如果有需要可teams通知thermal臨時參加，如有不便請多多包涵，謝謝拉。"
             },
             {
@@ -1949,32 +1998,36 @@
                 answer: "目前ACG theraml team如下:\n#thermal leader:William Yeh\n#thermal工程:Randy Chen\nthermal人數很少，但對應PM很多，所以會議只能挑重要或急需thermal的會議參加，如果有需要可teams通知thermal臨時參加，如有不便請多多包涵，謝謝拉。"
             },
             {
-                keywords: ["輻射","什麼"],
+                keywords: ["輻射散熱","是什麼"],
                 answer: "兩個不同溫度表面會有熱輻射的傳導，這現象不需要透過空氣，所以在真空環境或是外太空環境都可以進行。\n影響熱輻射的效率因素如下:\n1.兩個表面溫度的溫度差 \n2.表面的輻射率，最小為0最大為1，如果是0，代表幾乎沒有熱輻射的可能，如果是1，那就是熱輻射開到最大。黑色陽極表面的熱輻射率約為0.9。"
             },
             {
-                keywords: ["輻射","說明"],
+                keywords: ["輻射散熱","什麼是"],
                 answer: "兩個不同溫度表面會有熱輻射的傳導，這現象不需要透過空氣，所以在真空環境或是外太空環境都可以進行。\n影響熱輻射的效率因素如下:\n1.兩個表面溫度的溫度差 \n2.表面的輻射率，最小為0最大為1，如果是0，代表幾乎沒有熱輻射的可能，如果是1，那就是熱輻射開到最大。黑色陽極表面的熱輻射率約為0.9。"
             },
             {
-                keywords: ["radiation","說明"],
+                keywords: ["輻射散熱","說明"],
                 answer: "兩個不同溫度表面會有熱輻射的傳導，這現象不需要透過空氣，所以在真空環境或是外太空環境都可以進行。\n影響熱輻射的效率因素如下:\n1.兩個表面溫度的溫度差 \n2.表面的輻射率，最小為0最大為1，如果是0，代表幾乎沒有熱輻射的可能，如果是1，那就是熱輻射開到最大。黑色陽極表面的熱輻射率約為0.9。"
             },
             {
-                keywords: ["radiation","什麼"],
+                keywords: ["radiation","是什麼"],
                 answer: "兩個不同溫度表面會有熱輻射的傳導，這現象不需要透過空氣，所以在真空環境或是外太空環境都可以進行。\n影響熱輻射的效率因素如下:\n1.兩個表面溫度的溫度差 \n2.表面的輻射率，最小為0最大為1，如果是0，代表幾乎沒有熱輻射的可能，如果是1，那就是熱輻射開到最大。黑色陽極表面的熱輻射率約為0.9。"
             },
             {
-                keywords: ["浸沒","什麼"],
-                answer: "說明簡介連結:<a href='https://advantechrandy.github.io/Data-B006_V1.4/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>浸沒冷卻說明與影片</a>。"
+                keywords: ["radiation","什麼是"],
+                answer: "兩個不同溫度表面會有熱輻射的傳導，這現象不需要透過空氣，所以在真空環境或是外太空環境都可以進行。\n影響熱輻射的效率因素如下:\n1.兩個表面溫度的溫度差 \n2.表面的輻射率，最小為0最大為1，如果是0，代表幾乎沒有熱輻射的可能，如果是1，那就是熱輻射開到最大。黑色陽極表面的熱輻射率約為0.9。"
             },
             {
-                keywords: ["浸沒","說明"],
-                answer: "說明簡介連結:<a href='https://advantechrandy.github.io/Data-B006_V1.4/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>浸沒冷卻說明與影片</a>。"
+                keywords: ["浸沒","什麼是"],
+                answer: "浸沒式冷卻說明簡介連結:<a href='https://advantechrandy.github.io/Data-B006_V1.4/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>浸沒冷卻說明與影片</a>。"
             },
             {
-                keywords: ["simulaiton","多久"],
-                answer: "Thermal simulation需要3~4個工作天，看系統複雜度及當下工作狀況。"
+                keywords: ["浸沒","是什麼"],
+                answer: "浸沒式冷卻說明簡介連結:<a href='https://advantechrandy.github.io/Data-B006_V1.4/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>浸沒冷卻說明與影片</a>。"
+            },
+            {
+                keywords: ["thermal","工作","什麼"],
+                answer: "Thermal工作簡易說明如下。\n1.RFQ初期thermal solution規畫報價及風險評估。\n2.RFQ Thermal simulaiton評估。\n3.EVT thermal profile pre-test。\n4.DVT noise test(如果有需要)。\n5.後續PVT/MP相關thermal問題解決。"
             },
             {
                 keywords: ["thermal","工作","說明"],
@@ -1989,11 +2042,11 @@
                 answer: "Thermal profile pre-test需要4~5個工作天，看系統複雜度及當下工作狀況。"
             },
             {
-                keywords: ["heat sink","heat spreader"],
+                keywords: ["heat sink","heat spreader","差異"],
                 answer: "heat sink跟heat spreader的主要差異差在heat sink多了鰭片結構，而heat spreader沒有。\nheat sink自己本人就是完整的散熱結構，而heat spreader通常需要導熱到另一個散熱件，譬如外殼。"
             },
             {
-                keywords: ["heatsink","heat spreader"],
+                keywords: ["heatsink","heat spreader","不同"],
                 answer: "heat sink跟heat spreader的主要差異差在heat sink多了鰭片結構，而heat spreader沒有。\nheat sink自己本人就是完整的散熱結構，而heat spreader通常需要導熱到另一個散熱件，譬如外殼。"
             },
             {
@@ -2009,7 +2062,11 @@
                 answer: "Thermal profile pre-test需要4~5個工作天，看系統複雜度及當下工作狀況。"
             },
             {
-                keywords: ["自然對流","什麼"],
+                keywords: ["自然對流","是什麼"],
+                answer: "在沒有風扇吹或是外部風流狀態下，系統只能依靠本身散熱面加熱空氣，空氣被加熱後密度變小，會緩慢上升，形成很微小的風流，這微小風流有散熱效果。\這個過程我們叫它自然對流。"
+            },
+            {
+                keywords: ["自然對流","什麼是"],
                 answer: "在沒有風扇吹或是外部風流狀態下，系統只能依靠本身散熱面加熱空氣，空氣被加熱後密度變小，會緩慢上升，形成很微小的風流，這微小風流有散熱效果。\這個過程我們叫它自然對流。"
             },
             {
@@ -2021,7 +2078,11 @@
                 answer: "在沒有風扇吹或是外部風流狀態下，系統只能依靠本身散熱面加熱空氣，空氣被加熱後密度變小，會緩慢上升，形成很微小的風流，這微小風流有散熱效果。\這個過程我們叫它自然對流。"
             },
             {
-                keywords: ["強制對流","什麼"],
+                keywords: ["強制對流","是什麼"],
+                answer: "系統裡安裝風扇或是外部有其它風流吹，這種散熱狀態，我們叫它強制對流。\相較於自然對流，強制對流效果會強很多，也因此CPU高於15W，通常都需要用到強制對流。"
+            },
+            {
+                keywords: ["強制對流","什麼是"],
                 answer: "系統裡安裝風扇或是外部有其它風流吹，這種散熱狀態，我們叫它強制對流。\相較於自然對流，強制對流效果會強很多，也因此CPU高於15W，通常都需要用到強制對流。"
             },
             {
@@ -2037,11 +2098,19 @@
                 answer: "空氣是一個非常優良的絕熱物質，空氣的導熱係數約為0.023W/mK，約為鋁的萬分之一導熱速度。"
             },
             {
+                keywords: ["空氣", "散熱"],
+                answer: "空氣是一個非常優良的絕熱物質，空氣的導熱係數約為0.023W/mK，約為鋁的萬分之一導熱速度。"
+            },
+            {
                 keywords: ["空氣", "絕熱"],
                 answer: "空氣是一個非常優良的絕熱物質，空氣的導熱係數約為0.023W/mK，約為鋁的萬分之一導熱速度。"
             },
             {
-                keywords: ["模擬", "什麼"],
+                keywords: ["模擬", "是什麼"],
+                answer: "您指的應該是Thermal Simulation。\nThermal Simulation是以電腦計算去估計實際測試溫度狀態。\n流程是:1.建立電腦數值模型 2.輸入對應邊界條件及各種參數 3.重複計算Debug 4.產出溫度模擬結果"
+            },
+            {
+                keywords: ["模擬", "什麼是"],
                 answer: "您指的應該是Thermal Simulation。\nThermal Simulation是以電腦計算去估計實際測試溫度狀態。\n流程是:1.建立電腦數值模型 2.輸入對應邊界條件及各種參數 3.重複計算Debug 4.產出溫度模擬結果"
             },
             {
@@ -2069,11 +2138,11 @@
                 answer: "塑膠是一個非常優良的絕熱物質，塑膠的導熱係數約為0.5W/mK，約為鋁的四百分之一導熱速度。"
             },
             {
-                keywords: ["medical", "開孔"],
+                keywords: ["medical", "開孔大小"],
                 answer: "這是安規問題，建議詢問對應安規工程比較準確。\n如果是60601，開孔限制如下:\n1.小於2x2mm\n2.如果單邊1mm，那麼另一邊長度沒有限制"
             },
             {
-                keywords: ["醫療", "開孔"],
+                keywords: ["醫療", "開孔大小"],
                 answer: "這是安規問題，建議詢問對應安規工程比較準確。\n如果是60601，開孔限制如下:\n1.小於2x2mm\n2.如果單邊1mm，那麼另一邊長度沒有限制"
             },
             {
@@ -2085,15 +2154,15 @@
                 answer: "水的導熱係數很差，導熱係數約為0.6W/mK，約為鋁的千分之三傳導速度。"
             },
             {
-                keywords: ["噪音","時程"],
+                keywords: ["噪音","什麼時候測"],
                 answer: "一般專案開發中，噪音測試大約會是在EVT尾段或是DVT初期。"
             },
             {
-                keywords: ["噪音","什麼","時候"],
+                keywords: ["噪音","哪個階段測"],
                 answer: "一般專案開發中，噪音測試大約會是在EVT尾段或是DVT初期。"
             },
             {
-                keywords: ["噪音","地點"],
+                keywords: ["噪音","測試地點"],
                 answer: "一般專案開發中，噪音測試大部分都會是在五股SGS進行測試。"
             },
             {
@@ -2101,19 +2170,31 @@
                 answer: "一般專案開發中，噪音測試大部分都會是在五股SGS進行測試。"
             },
             {
-                keywords: ["陽極","影響"],
+                keywords: ["噪音","研華內部可以測"],
+                answer: "研華內部沒有噪音實驗室，噪音測試大部分都會是在五股SGS進行測試。"
+            },
+            {
+                keywords: ["噪音","研華裡面可以測"],
+                answer: "研華內部沒有噪音實驗室，噪音測試大部分都會是在五股SGS進行測試。"
+            },
+            {
+                keywords: ["陽極","影響","散熱"],
                 answer: "Thermal solution陽極處理有幾個影響。\n1.陽極處理可以增加輻射散熱效果，表面溫度越高效果越好，越黑效果越好\n2.陽極處理可以避免金屬面氧化變醜"
             },
             {
-                keywords: ["陽極","效果"],
+                keywords: ["陽極","溫度","影響"],
                 answer: "Thermal solution陽極處理有幾個影響。\n1.陽極處理可以增加輻射散熱效果，表面溫度越高效果越好，越黑效果越好\n2.陽極處理可以避免金屬面氧化變醜"
             },
             {
-                keywords: ["噪音","窗口"],
+                keywords: ["噪音測試","聯絡窗口"],
                 answer: "一般專案開發中，噪音測試大部分都會是在五股SGS進行測試。\n研華對SGS的窗口是QA。\nSGS目前窗口為Elin，電話為02-2299-3279#3619，Mail:Elin.TSENG@sgs.com"
             },
             {
-                keywords: ["噪音","聯絡"],
+                keywords: ["noise test","聯絡窗口"],
+                answer: "一般專案開發中，噪音測試大部分都會是在五股SGS進行測試。\n研華對SGS的窗口是QA。\nSGS目前窗口為Elin，電話為02-2299-3279#3619，Mail:Elin.TSENG@sgs.com"
+            },
+            {
+                keywords: ["noise測試","聯絡窗口"],
                 answer: "一般專案開發中，噪音測試大部分都會是在五股SGS進行測試。\n研華對SGS的窗口是QA。\nSGS目前窗口為Elin，電話為02-2299-3279#3619，Mail:Elin.TSENG@sgs.com"
             },
             {
@@ -2121,7 +2202,7 @@
                 answer: "常用表面溫度安規如連結:如連結: <a href='https://docs.google.com/presentation/d/1vcWneWYjSQbjr2i8ji8FZurFwyGnJV82/edit?usp=drive_link&ouid=114028389622768722194&rtpof=true&sd=true' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>表面溫度安規</a>"
             },
             {
-                keywords: ["表面","安規"],
+                keywords: ["表面溫度","限制"],
                 answer: "常用表面溫度安規如連結:如連結: <a href='https://docs.google.com/presentation/d/1vcWneWYjSQbjr2i8ji8FZurFwyGnJV82/edit?usp=drive_link&ouid=114028389622768722194&rtpof=true&sd=true' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>表面溫度安規</a>"
             },
             {
@@ -2133,19 +2214,27 @@
                 answer: "常用的鋁擠料材料為AL6061或AL6063，導熱係數約為180W/mK，約為銅的二分之一傳導速度。"
             },
             {
-                keywords: ["熱管","導熱"],
+                keywords: ["熱管","導熱","什麼","影響"],
                 answer: "熱管的性能跟重力方向/折角角度及數量/管徑等等條件有關，一般等效導熱係數約為3000~5000W/mK，約為銅的十倍傳導速度。"
             },
             {
-                keywords: ["heat pipe","導熱"],
+                keywords: ["熱管","散熱","什麼","影響"],
                 answer: "熱管的性能跟重力方向/折角角度及數量/管徑等等條件有關，一般等效導熱係數約為3000~5000W/mK，約為銅的十倍傳導速度。"
             },
             {
-                keywords: ["熱管","方向性"],
+                keywords: ["heat pipe","導熱","什麼","影響"],
+                answer: "熱管的性能跟重力方向/折角角度及數量/管徑等等條件有關，一般等效導熱係數約為3000~5000W/mK，約為銅的十倍傳導速度。"
+            },
+            {
+                keywords: ["heat pipe","散熱","什麼","影響"],
+                answer: "熱管的性能跟重力方向/折角角度及數量/管徑等等條件有關，一般等效導熱係數約為3000~5000W/mK，約為銅的十倍傳導速度。"
+            },
+            {
+                keywords: ["熱管","有方向性嗎"],
                 answer: "熱管需要考慮方向性，最好的狀態是垂直擺放，熱源在下方，冷卻端在上方，熱管內雙向流散熱效率會比較好。"
             },
             {
-                keywords: ["heat pipe","方向性"],
+                keywords: ["heat pipe","有方向性嗎"],
                 answer: "熱管需要考慮方向性，最好的狀態是垂直擺放，熱源在下方，冷卻端在上方，熱管內雙向流散熱效率會比較好。"
             },
             {
@@ -2157,11 +2246,19 @@
                 answer: "熱管的性能跟重力方向/折角角度及數量/管徑等等條件有關，一般等效導熱係數約為3000~5000W/mK，約為銅的十倍傳導速度。"
             },
             {
-                keywords: ["vc","什麼"],
+                keywords: ["vc","是什麼"],
                 answer: "VC的全名是Vapor Chamber，有點像平板型熱管，熱傳導係數約為銅的十倍。\n說明與影片:<a href='https://advantechrandy.github.io/Data-B004_V2.3/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>VC說明與影片</a>"
             },
             {
-                keywords: ["vapor chamber","什麼"],
+                keywords: ["vc","什麼是"],
+                answer: "VC的全名是Vapor Chamber，有點像平板型熱管，熱傳導係數約為銅的十倍。\n說明與影片:<a href='https://advantechrandy.github.io/Data-B004_V2.3/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>VC說明與影片</a>"
+            },
+            {
+                keywords: ["vapor chamber","是什麼"],
+                answer: "有點像平板型熱管，熱傳導係數約為銅的十倍。\n說明與影片:<a href='https://advantechrandy.github.io/Data-B004_V2.3/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>VC說明與影片</a>"
+            },
+            {
+                keywords: ["vapor chamber","什麼是"],
                 answer: "有點像平板型熱管，熱傳導係數約為銅的十倍。\n說明與影片:<a href='https://advantechrandy.github.io/Data-B004_V2.3/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>VC說明與影片</a>"
             },
             {
@@ -2181,11 +2278,11 @@
                 answer: "choke/transformer廢熱計算中，銅損有相關資料可以製作tool，但鐵損為廠商機密資料，各家參數資料不同。\n也因此只能用廠商提供的tool計算，可以洽詢對應的Power。"
             },
             {
-                keywords: ["fanless","cpu瓦特數"],
+                keywords: ["fanless","cpu瓦特數","可以"],
                 answer: "一般環境溫度40度的fanless系統，CPU最高約到15W，這跟系統內結構/邊界條件/開孔條件/heat sink效率相關，會需要上下預估修正。"
             },
             {
-                keywords: ["fanless","cpu power"],
+                keywords: ["fanless","cpu power","可以"],
                 answer: "一般環境溫度40度的fanless系統，CPU最高約到15W，這跟系統內結構/邊界條件/開孔條件/heat sink效率相關，會需要上下預估修正。"
             },
             {
@@ -2241,19 +2338,11 @@
                 answer: "熱管裡面是中空+毛細結構，灌入一部份水，抽真空，讓水的沸點降低。\n發熱端讓水變蒸氣，蒸氣到冷凝端凝結成水再流回發熱端。"
             },
             {
-                keywords: ["熱管裡面","說明"],
-                answer: "熱管裡面是中空+毛細結構，灌入一部份水，抽真空，讓水的沸點降低。\n發熱端讓水變蒸氣，蒸氣到冷凝端凝結成水再流回發熱端。"
-            },
-            {
                 keywords: ["熱管裡面","結構"],
                 answer: "熱管裡面是中空+毛細結構，灌入一部份水，抽真空，讓水的沸點降低。\n發熱端讓水變蒸氣，蒸氣到冷凝端凝結成水再流回發熱端。"
             },
             {
                 keywords: ["熱管內部","什麼"],
-                answer: "熱管裡面是中空+毛細結構，灌入一部份水，抽真空，讓水的沸點降低。\n發熱端讓水變蒸氣，蒸氣到冷凝端凝結成水再流回發熱端。"
-            },
-            {
-                keywords: ["熱管內部","說明"],
                 answer: "熱管裡面是中空+毛細結構，灌入一部份水，抽真空，讓水的沸點降低。\n發熱端讓水變蒸氣，蒸氣到冷凝端凝結成水再流回發熱端。"
             },
             {
@@ -2285,15 +2374,27 @@
                 answer: "相同導熱係數條件下，導熱膏的熱阻會比較低，因為gap比較小，導熱膏的gap會小於0.1mm，大瓦特數零件或是高環境溫度系統，會建議用導熱膏。"
             },
             {
+                keywords: ["thermal pad","導熱膏","不同"],
+                answer: "相同導熱係數條件下，導熱膏的熱阻會比較低，因為gap比較小，導熱膏的gap會小於0.1mm，大瓦特數零件或是高環境溫度系統，會建議用導熱膏。"
+            },
+            {
+                keywords: ["thermal pad","grease","不同"],
+                answer: "相同導熱係數條件下，導熱膏的熱阻會比較低，因為gap比較小，導熱膏的gap會小於0.1mm，大瓦特數零件或是高環境溫度系統，會建議用導熱膏。"
+            },
+            {
+                keywords: ["散熱片","導熱膏","不同"],
+                answer: "相同導熱係數條件下，導熱膏的熱阻會比較低，因為gap比較小，導熱膏的gap會小於0.1mm，大瓦特數零件或是高環境溫度系統，會建議用導熱膏。"
+            },
+            {
                 keywords: ["濾網","影響","溫度"],
                 answer: "進出風口加裝濾網，會增加風流阻抗，不管是自然對流或是強制對流，整體thermal效能下降，系統溫度上升。"
             },
              {
-                keywords: ["濾網","影響","熱"],
+                keywords: ["濾網","影響","散熱"],
                 answer: "進出風口加裝濾網，會增加風流阻抗，不管是自然對流或是強制對流，整體thermal效能下降，系統溫度上升。"
             },
             {
-                keywords: ["熱管","方向"],
+                keywords: ["熱管","方向性"],
                 answer: "熱管設計有方向性限制，最佳狀況是熱源在下方，冷卻端在上方，這樣水流最順，熱管效率最好。"
             },
             {
@@ -2309,23 +2410,23 @@
                 answer: "IP為防塵防水等級，第一個數字是防塵等級，第二個數字是防水等級。"
             },
             {
-                keywords: ["ip等級","解釋"],
+                keywords: ["ip等級","什麼是"],
                 answer: "IP為防塵防水等級，第一個數字是防塵等級，第二個數字是防水等級。"
             },
             {
-                keywords: ["ip等級","什麼"],
+                keywords: ["ip等級","是什麼"],
                 answer: "IP為防塵防水等級，第一個數字是防塵等級，第二個數字是防水等級。"
             },
             {
-                keywords: ["thermal gel","什麼"],
+                keywords: ["thermal gel","什麼是"],
                 answer: "Thermal gel是一種導熱材料，有點像牙膏，主要用在同時接觸多零件的heat sink上，避免每個零件導熱材料壓力不同，讓heat sink歪斜導致散熱效果變差。"
             },
             {
-                keywords: ["thermal gel","說明"],
+                keywords: ["thermal gel","是什麼"],
                 answer: "Thermal gel是一種導熱材料，有點像牙膏，主要用在同時接觸多零件的heat sink上，避免每個零件導熱材料壓力不同，讓heat sink歪斜導致散熱效果變差。"
             },
             {
-                keywords: ["thermal gel","解釋"],
+                keywords: ["thermal gel","用在哪"],
                 answer: "Thermal gel是一種導熱材料，有點像牙膏，主要用在同時接觸多零件的heat sink上，避免每個零件導熱材料壓力不同，讓heat sink歪斜導致散熱效果變差。"
             },
             {
@@ -2345,47 +2446,79 @@
                 answer: "這是一般常見的現象。\n如果風扇轉動時遇到阻力，扇葉附近空氣密度會下降，有點像慢慢開始空轉的感覺，而同duty下風扇瓦特數固定，所以轉速會拉高。"
             },
             {
-                keywords: ["heat sink","製程"],
+                keywords: ["heat sink","製程","介紹"],
                 answer: "Heat sink主要有四種製程。\n1.鋁擠(常用) 2.鋁壓鑄(常用) 3.扣fin(通常用在cooler) 4.鏟fin\n<a href='https://advantechrandy.github.io/Data-B003-V1.6/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>Heat Sink製程介紹</a>"
             },
             {
-                keywords: ["heatsink","製程"],
+                keywords: ["heatsink","製程","介紹"],
                 answer: "Heat sink主要有四種製程。\n1.鋁擠(常用) 2.鋁壓鑄(常用) 3.扣fin(通常用在cooler) 4.鏟fin\n<a href='https://advantechrandy.github.io/Data-B003-V1.6/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>Heat Sink製程介紹</a>"
             },
             {
-                keywords: ["heat sink","製造"],
+                keywords: ["heat sink","製程","說明"],
                 answer: "Heat sink主要有四種製程。\n1.鋁擠(常用) 2.鋁壓鑄(常用) 3.扣fin(通常用在cooler) 4.鏟fin\n<a href='https://advantechrandy.github.io/Data-B003-V1.6/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>Heat Sink製程介紹</a>"
             },
             {
-                keywords: ["heatsink","製造"],
+                keywords: ["heatsink","製程","說明"],
                 answer: "Heat sink主要有四種製程。\n1.鋁擠(常用) 2.鋁壓鑄(常用) 3.扣fin(通常用在cooler) 4.鏟fin\n<a href='https://advantechrandy.github.io/Data-B003-V1.6/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>Heat Sink製程介紹</a>"
             },
             {
-                keywords: ["thermal pad","製造"],
+                keywords: ["heat sink","製程","哪些"],
+                answer: "Heat sink主要有四種製程。\n1.鋁擠(常用) 2.鋁壓鑄(常用) 3.扣fin(通常用在cooler) 4.鏟fin\n<a href='https://advantechrandy.github.io/Data-B003-V1.6/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>Heat Sink製程介紹</a>"
+            },
+            {
+                keywords: ["heatsink","製程","那些"],
+                answer: "Heat sink主要有四種製程。\n1.鋁擠(常用) 2.鋁壓鑄(常用) 3.扣fin(通常用在cooler) 4.鏟fin\n<a href='https://advantechrandy.github.io/Data-B003-V1.6/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>Heat Sink製程介紹</a>"
+            },
+            {
+                keywords: ["thermal pad","製造流程","介紹"],
                 answer: "Thermal pad製造流程:\n1.配料攪拌 2.塗佈壓延 3.高溫硫化 4.裁切\n<a href='https://advantechrandy.github.io/Data-B019_V2.1/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>Thermal Pad製程介紹與影片</a>"
             },
             {
-                keywords: ["thermal pad","製程"],
+                keywords: ["thermal pad","製造流程","說明"],
                 answer: "Thermal pad製造流程:\n1.配料攪拌 2.塗佈壓延 3.高溫硫化 4.裁切\n<a href='https://advantechrandy.github.io/Data-B019_V2.1/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>Thermal Pad製程介紹與影片</a>"
             },
             {
-                keywords: ["壓鑄","製程"],
+                keywords: ["thermal pad","製程","介紹"],
+                answer: "Thermal pad製造流程:\n1.配料攪拌 2.塗佈壓延 3.高溫硫化 4.裁切\n<a href='https://advantechrandy.github.io/Data-B019_V2.1/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>Thermal Pad製程介紹與影片</a>"
+            },
+            {
+                keywords: ["thermal pad","製程","說明"],
+                answer: "Thermal pad製造流程:\n1.配料攪拌 2.塗佈壓延 3.高溫硫化 4.裁切\n<a href='https://advantechrandy.github.io/Data-B019_V2.1/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>Thermal Pad製程介紹與影片</a>"
+            },
+            {
+                keywords: ["散熱片","製造流程","介紹"],
+                answer: "Thermal pad製造流程:\n1.配料攪拌 2.塗佈壓延 3.高溫硫化 4.裁切\n<a href='https://advantechrandy.github.io/Data-B019_V2.1/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>Thermal Pad製程介紹與影片</a>"
+            },
+            {
+                keywords: ["散熱片","製造流程","說明"],
+                answer: "Thermal pad製造流程:\n1.配料攪拌 2.塗佈壓延 3.高溫硫化 4.裁切\n<a href='https://advantechrandy.github.io/Data-B019_V2.1/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>Thermal Pad製程介紹與影片</a>"
+            },
+            {
+                keywords: ["散熱片","製程","介紹"],
+                answer: "Thermal pad製造流程:\n1.配料攪拌 2.塗佈壓延 3.高溫硫化 4.裁切\n<a href='https://advantechrandy.github.io/Data-B019_V2.1/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>Thermal Pad製程介紹與影片</a>"
+            },
+            {
+                keywords: ["散熱片","製程","說明"],
+                answer: "Thermal pad製造流程:\n1.配料攪拌 2.塗佈壓延 3.高溫硫化 4.裁切\n<a href='https://advantechrandy.github.io/Data-B019_V2.1/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>Thermal Pad製程介紹與影片</a>"
+            },
+            {
+                keywords: ["壓鑄","製程","說明"],
                 answer: "鋁壓鑄heat sink製程說明:\n<a href='https://advantechrandy.github.io/Data-B018_V2.1/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>Heat Sink鋁壓鑄製程說明與影片</a>"
             },
             {
-                keywords: ["壓鑄","製造"],
+                keywords: ["壓鑄","製程","介紹"],
                 answer: "鋁壓鑄heat sink製程說明:\n<a href='https://advantechrandy.github.io/Data-B018_V2.1/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>Heat Sink鋁壓鑄製程說明與影片</a>"
             },
             {
-                keywords: ["壓鑄","介紹"],
+                keywords: ["壓鑄","製程","介紹"],
                 answer: "鋁壓鑄heat sink製程說明:\n<a href='https://advantechrandy.github.io/Data-B018_V2.1/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>Heat Sink鋁壓鑄製程說明與影片</a>"
             },
             {
-                keywords: ["壓鑄","說明"],
+                keywords: ["壓鑄","製程","說明"],
                 answer: "鋁壓鑄heat sink製程說明:\n<a href='https://advantechrandy.github.io/Data-B018_V2.1/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>Heat Sink鋁壓鑄製程說明與影片</a>"
             },
             {
-                keywords: ["鋁擠","製程"],
+                keywords: ["鋁擠","製程","說明"],
                 answer: "鋁擠heat sink製程說明與影片:\n<a href='https://advantechrandy.github.io/Data-B011_V3.2/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>Heat Sink鋁擠製程說明與影片</a>"
             },
             {
@@ -2397,15 +2530,15 @@
                 answer: "風扇結構說明與影片:\n<a href='https://advantechrandy.github.io/Data-B005_V1.5/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>風扇結構說明與影片</a>"
             },
             {
-                keywords: ["鋁擠","製造"],
+                keywords: ["鋁擠","製程","介紹"],
                 answer: "鋁擠heat sink製程說明與影片:\n<a href='https://advantechrandy.github.io/Data-B011_V3.2/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>Heat Sink鋁擠製程說明與影片</a>"
             },
             {
-                keywords: ["鋁擠","介紹"],
+                keywords: ["鋁擠","製程","介紹"],
                 answer: "鋁擠heat sink製程說明與影片:\n<a href='https://advantechrandy.github.io/Data-B011_V3.2/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>Heat Sink鋁擠製程說明與影片</a>"
             },
             {
-                keywords: ["鋁擠","說明"],
+                keywords: ["鋁擠","製程","說明"],
                 answer: "鋁擠heat sink製程說明與影片:\n<a href='https://advantechrandy.github.io/Data-B011_V3.2/' target='_blank' class='text-[var(--accent-orange)] underline hover:text-white transition-colors'>Heat Sink鋁擠製程說明與影片</a>"
             },
         ];
